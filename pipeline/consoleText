@@ -1,0 +1,1905 @@
+Started by user XXXXX
+[Office365connector] No webhooks to notify
+Running in Durability level: SURVIVABLE_NONATOMIC
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on linux-sm in /var/jenkins/workspace/ci-test-12
+[Pipeline] {
+[Pipeline] deleteDir
+[Pipeline] checkout
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/xxxxx/test1.git
+ > git init /var/jenkins/workspace/ci-test-12 # timeout=10
+Fetching upstream changes from https://github.com/xxxxx/test1.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/xxxxx/test1.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/xxxxx/test1.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/xxxxx/test1.git # timeout=10
+Checking out Revision 59dc91dc17f3eba0c4ef91534e999bad8cde0743 (origin/master)
+Commit message: "first commit"
+Fetching upstream changes from https://github.com/xxxxx/test1.git
+ > git fetch --tags --progress https://github.com/xxxxx/test1.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 59dc91dc17f3eba0c4ef91534e999bad8cde0743 # timeout=10
+ > git rev-list --no-walk 59dc91dc17f3eba0c4ef91534e999bad8cde0743 # timeout=10
+[Pipeline] stage
+[Pipeline] { (build-docker)
+[Pipeline] dir
+Running in /var/jenkins/workspace/ci-test-12/docker
+[Pipeline] {
+[Pipeline] sh
++ docker build -t aaa:0.1 .
+Sending build context to Docker daemon  4.096kB
+Step 1/7 : FROM ubuntu:18.04
+ ---> 94e814e2efa8
+Step 2/7 : LABEL description="yaml-cpp builder"
+ ---> Running in bb13d10be73d
+Removing intermediate container bb13d10be73d
+ ---> 4225c2294541
+Step 3/7 : ENV DEBIAN_FRONTEND="noninteractive"
+ ---> Running in f2c53e63ec71
+Removing intermediate container f2c53e63ec71
+ ---> 5d4a4f6f5e88
+Step 4/7 : ENV UBUNTU_MIRROR "ftp.uni-stuttgart.de"
+ ---> Running in cfc2ac5c48fc
+Removing intermediate container cfc2ac5c48fc
+ ---> 1521533342d1
+Step 5/7 : RUN sed -i "s/archive.ubuntu.com/${UBUNTU_MIRROR}/g" /etc/apt/sources.list &&     apt-get update &&     apt-get install -y g++ cmake ssh git
+ ---> Running in e0f4bf5beb77
+Get:1 http://ftp.uni-stuttgart.de/ubuntu bionic InRelease [242 kB]
+Get:2 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Get:3 http://ftp.uni-stuttgart.de/ubuntu bionic-updates InRelease [88.7 kB]
+Get:4 http://ftp.uni-stuttgart.de/ubuntu bionic-backports InRelease [74.6 kB]
+Get:5 http://ftp.uni-stuttgart.de/ubuntu bionic/restricted amd64 Packages [13.5 kB]
+Get:6 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 Packages [1344 kB]
+Get:7 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [4169 B]
+Get:8 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [326 kB]
+Get:9 http://ftp.uni-stuttgart.de/ubuntu bionic/universe amd64 Packages [11.3 MB]
+Get:10 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [5436 B]
+Get:11 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [494 kB]
+Get:12 http://ftp.uni-stuttgart.de/ubuntu bionic/multiverse amd64 Packages [186 kB]
+Get:13 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/restricted amd64 Packages [10.8 kB]
+Get:14 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 Packages [837 kB]
+Get:15 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/multiverse amd64 Packages [7239 B]
+Get:16 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/universe amd64 Packages [1213 kB]
+Get:17 http://ftp.uni-stuttgart.de/ubuntu bionic-backports/main amd64 Packages [2496 B]
+Get:18 http://ftp.uni-stuttgart.de/ubuntu bionic-backports/universe amd64 Packages [3902 B]
+Fetched 16.3 MB in 2s (7726 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  binutils binutils-common binutils-x86-64-linux-gnu ca-certificates
+  cmake-data cpp cpp-7 dbus dmsetup file g++-7 gcc gcc-7 gcc-7-base gcc-8-base
+  gir1.2-glib-2.0 git-man krb5-locales less libapparmor1 libarchive13
+  libargon2-0 libasan4 libasn1-8-heimdal libatomic1 libbinutils libbsd0
+  libc-dev-bin libc6-dev libcap2 libcc1-0 libcilkrts5 libcryptsetup12
+  libcurl3-gnutls libcurl4 libdbus-1-3 libdevmapper1.02.1 libedit2
+  liberror-perl libexpat1 libgcc-7-dev libgcc1 libgdbm-compat4 libgdbm5
+  libgirepository-1.0-1 libglib2.0-0 libglib2.0-data libgomp1 libgssapi-krb5-2
+  libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal
+  libheimntlm0-heimdal libhx509-5-heimdal libicu60 libidn11 libip4tc0 libisl19
+  libitm1 libjson-c3 libjsoncpp1 libk5crypto3 libkeyutils1 libkmod2
+  libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2 libldap-common
+  liblsan0 liblzo2-2 libmagic-mgc libmagic1 libmpc3 libmpdec2 libmpfr6 libmpx2
+  libnghttp2-14 libnss-systemd libpam-systemd libperl5.26 libpsl5
+  libpython3-stdlib libpython3.6-minimal libpython3.6-stdlib libquadmath0
+  libreadline7 librhash0 libroken18-heimdal librtmp1 libsasl2-2
+  libsasl2-modules libsasl2-modules-db libsqlite3-0 libssl1.0.0 libssl1.1
+  libstdc++-7-dev libstdc++6 libsystemd0 libtsan0 libubsan0 libuv1
+  libwind0-heimdal libwrap0 libx11-6 libx11-data libxau6 libxcb1 libxdmcp6
+  libxext6 libxml2 libxmuu1 linux-libc-dev make manpages manpages-dev
+  mime-support multiarch-support ncurses-term netbase networkd-dispatcher
+  openssh-client openssh-server openssh-sftp-server openssl patch perl
+  perl-modules-5.26 publicsuffix python3 python3-certifi python3-chardet
+  python3-dbus python3-gi python3-idna python3-minimal python3-pkg-resources
+  python3-requests python3-six python3-urllib3 python3.6 python3.6-minimal
+  readline-common shared-mime-info ssh-import-id systemd systemd-sysv ucf wget
+  xauth xdg-user-dirs xz-utils
+Suggested packages:
+  binutils-doc cmake-doc ninja-build cpp-doc gcc-7-locales
+  default-dbus-session-bus | dbus-session-bus g++-multilib g++-7-multilib
+  gcc-7-doc libstdc++6-7-dbg gcc-multilib autoconf automake libtool flex bison
+  gdb gcc-doc gcc-7-multilib libgcc1-dbg libgomp1-dbg libitm1-dbg
+  libatomic1-dbg libasan4-dbg liblsan0-dbg libtsan0-dbg libubsan0-dbg
+  libcilkrts5-dbg libmpx2-dbg libquadmath0-dbg gettext-base git-daemon-run
+  | git-daemon-sysvinit git-doc git-el git-email git-gui gitk gitweb git-cvs
+  git-mediawiki git-svn lrzip glibc-doc gdbm-l10n krb5-doc krb5-user
+  libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal
+  libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+  libstdc++-7-doc make-doc man-browser iw | wireless-tools keychain libpam-ssh
+  monkeysphere ssh-askpass molly-guard rssh ufw ed diffutils-doc perl-doc
+  libterm-readline-gnu-perl | libterm-readline-perl-perl python3-doc
+  python3-tk python3-venv python-dbus-doc python3-dbus-dbg python3-setuptools
+  python3-cryptography python3-openssl python3-socks python3.6-venv
+  python3.6-doc binfmt-support readline-doc systemd-container policykit-1
+The following NEW packages will be installed:
+  binutils binutils-common binutils-x86-64-linux-gnu ca-certificates cmake
+  cmake-data cpp cpp-7 dbus dmsetup file g++ g++-7 gcc gcc-7 gcc-7-base
+  gir1.2-glib-2.0 git git-man krb5-locales less libapparmor1 libarchive13
+  libargon2-0 libasan4 libasn1-8-heimdal libatomic1 libbinutils libbsd0
+  libc-dev-bin libc6-dev libcap2 libcc1-0 libcilkrts5 libcryptsetup12
+  libcurl3-gnutls libcurl4 libdbus-1-3 libdevmapper1.02.1 libedit2
+  liberror-perl libexpat1 libgcc-7-dev libgdbm-compat4 libgdbm5
+  libgirepository-1.0-1 libglib2.0-0 libglib2.0-data libgomp1 libgssapi-krb5-2
+  libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal
+  libheimntlm0-heimdal libhx509-5-heimdal libicu60 libidn11 libip4tc0 libisl19
+  libitm1 libjson-c3 libjsoncpp1 libk5crypto3 libkeyutils1 libkmod2
+  libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2 libldap-common
+  liblsan0 liblzo2-2 libmagic-mgc libmagic1 libmpc3 libmpdec2 libmpfr6 libmpx2
+  libnghttp2-14 libnss-systemd libpam-systemd libperl5.26 libpsl5
+  libpython3-stdlib libpython3.6-minimal libpython3.6-stdlib libquadmath0
+  libreadline7 librhash0 libroken18-heimdal librtmp1 libsasl2-2
+  libsasl2-modules libsasl2-modules-db libsqlite3-0 libssl1.0.0 libssl1.1
+  libstdc++-7-dev libtsan0 libubsan0 libuv1 libwind0-heimdal libwrap0 libx11-6
+  libx11-data libxau6 libxcb1 libxdmcp6 libxext6 libxml2 libxmuu1
+  linux-libc-dev make manpages manpages-dev mime-support multiarch-support
+  ncurses-term netbase networkd-dispatcher openssh-client openssh-server
+  openssh-sftp-server openssl patch perl perl-modules-5.26 publicsuffix
+  python3 python3-certifi python3-chardet python3-dbus python3-gi python3-idna
+  python3-minimal python3-pkg-resources python3-requests python3-six
+  python3-urllib3 python3.6 python3.6-minimal readline-common shared-mime-info
+  ssh ssh-import-id systemd systemd-sysv ucf wget xauth xdg-user-dirs xz-utils
+The following packages will be upgraded:
+  gcc-8-base libgcc1 libstdc++6 libsystemd0
+4 upgraded, 152 newly installed, 0 to remove and 11 not upgraded.
+Need to get 83.5 MB of archives.
+After this operation, 384 MB of additional disk space will be used.
+Get:1 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libsystemd0 amd64 237-3ubuntu10.22 [204 kB]
+Get:2 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libssl1.1 amd64 1.1.1-1ubuntu2.1~18.04.1 [1295 kB]
+Get:3 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libpython3.6-minimal amd64 3.6.8-1~18.04.1 [533 kB]
+Get:4 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libexpat1 amd64 2.2.5-3 [80.2 kB]
+Get:5 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 python3.6-minimal amd64 3.6.8-1~18.04.1 [1620 kB]
+Get:6 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 python3-minimal amd64 3.6.7-1~18.04 [23.7 kB]
+Get:7 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 mime-support all 3.60ubuntu1 [30.1 kB]
+Get:8 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libmpdec2 amd64 2.4.2-1ubuntu1 [84.1 kB]
+Get:9 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 readline-common all 7.0-3 [52.9 kB]
+Get:10 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libreadline7 amd64 7.0-3 [124 kB]
+Get:11 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libsqlite3-0 amd64 3.22.0-1 [496 kB]
+Get:12 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libpython3.6-stdlib amd64 3.6.8-1~18.04.1 [1715 kB]
+Get:13 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 python3.6 amd64 3.6.8-1~18.04.1 [202 kB]
+Get:14 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libpython3-stdlib amd64 3.6.7-1~18.04 [7240 B]
+Get:15 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 python3 amd64 3.6.7-1~18.04 [47.2 kB]
+Get:16 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libcap2 amd64 1:2.25-1.2 [13.0 kB]
+Get:17 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libargon2-0 amd64 0~20161029-1.1 [19.9 kB]
+Get:18 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libdevmapper1.02.1 amd64 2:1.02.145-4.1ubuntu3 [127 kB]
+Get:19 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libjson-c3 amd64 0.12.1-1.3 [21.4 kB]
+Get:20 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libcryptsetup12 amd64 2:2.0.2-1ubuntu1.1 [134 kB]
+Get:21 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libidn11 amd64 1.33-2.1ubuntu1.2 [46.6 kB]
+Get:22 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libip4tc0 amd64 1.6.1-2ubuntu2 [19.6 kB]
+Get:23 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libapparmor1 amd64 2.12-4ubuntu5.1 [31.3 kB]
+Get:24 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libkmod2 amd64 24-1ubuntu3.2 [40.0 kB]
+Get:25 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 systemd amd64 237-3ubuntu10.22 [2901 kB]
+Get:26 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 systemd-sysv amd64 237-3ubuntu10.22 [11.7 kB]
+Get:27 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 multiarch-support amd64 2.27-3ubuntu1 [6916 B]
+Get:28 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libxau6 amd64 1:1.0.8-1 [8376 B]
+Get:29 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libbsd0 amd64 0.8.7-1 [41.5 kB]
+Get:30 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libxdmcp6 amd64 1:1.1.2-3 [10.7 kB]
+Get:31 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libxcb1 amd64 1.13-2~ubuntu18.04 [45.5 kB]
+Get:32 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libx11-data all 2:1.6.4-3ubuntu0.2 [113 kB]
+Get:33 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libx11-6 amd64 2:1.6.4-3ubuntu0.2 [569 kB]
+Get:34 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libxext6 amd64 2:1.3.3-1 [29.4 kB]
+Get:35 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 liblzo2-2 amd64 2.08-1.2 [48.7 kB]
+Get:36 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 perl-modules-5.26 all 5.26.1-6ubuntu0.3 [2763 kB]
+Get:37 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libgdbm5 amd64 1.14.1-6 [26.0 kB]
+Get:38 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libgdbm-compat4 amd64 1.14.1-6 [6084 B]
+Get:39 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libperl5.26 amd64 5.26.1-6ubuntu0.3 [3527 kB]
+Get:40 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 perl amd64 5.26.1-6ubuntu0.3 [201 kB]
+Get:41 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libedit2 amd64 3.1-20170329-1 [76.9 kB]
+Get:42 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libkrb5support0 amd64 1.16-2ubuntu0.1 [30.9 kB]
+Get:43 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libk5crypto3 amd64 1.16-2ubuntu0.1 [85.6 kB]
+Get:44 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libkeyutils1 amd64 1.5.9-9.2ubuntu2 [8720 B]
+Get:45 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libkrb5-3 amd64 1.16-2ubuntu0.1 [279 kB]
+Get:46 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libgssapi-krb5-2 amd64 1.16-2ubuntu0.1 [122 kB]
+Get:47 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libssl1.0.0 amd64 1.0.2n-1ubuntu5.3 [1088 kB]
+Get:48 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 openssh-client amd64 1:7.6p1-4ubuntu0.3 [614 kB]
+Get:49 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 openssh-sftp-server amd64 1:7.6p1-4ubuntu0.3 [45.6 kB]
+Get:50 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 ucf all 3.0038 [50.5 kB]
+Get:51 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libwrap0 amd64 7.6.q-27 [46.3 kB]
+Get:52 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 openssh-server amd64 1:7.6p1-4ubuntu0.3 [333 kB]
+Get:53 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 ssh all 1:7.6p1-4ubuntu0.3 [5204 B]
+Get:54 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 gcc-8-base amd64 8.3.0-6ubuntu1~18.04 [18.6 kB]
+Get:55 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libstdc++6 amd64 8.3.0-6ubuntu1~18.04 [400 kB]
+Get:56 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libgcc1 amd64 1:8.3.0-6ubuntu1~18.04 [40.7 kB]
+Get:57 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 openssl amd64 1.1.1-1ubuntu2.1~18.04.1 [614 kB]
+Get:58 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 ca-certificates all 20180409 [151 kB]
+Get:59 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libdbus-1-3 amd64 1.12.2-1ubuntu1.1 [175 kB]
+Get:60 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 dbus amd64 1.12.2-1ubuntu1.1 [150 kB]
+Get:61 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 dmsetup amd64 2:1.02.145-4.1ubuntu3 [74.5 kB]
+Get:62 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libmagic-mgc amd64 1:5.32-2ubuntu0.2 [184 kB]
+Get:63 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libmagic1 amd64 1:5.32-2ubuntu0.2 [68.5 kB]
+Get:64 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 file amd64 1:5.32-2ubuntu0.2 [22.1 kB]
+Get:65 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libglib2.0-0 amd64 2.56.4-0ubuntu0.18.04.3 [1169 kB]
+Get:66 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libgirepository-1.0-1 amd64 1.56.1-1 [82.0 kB]
+Get:67 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 gir1.2-glib-2.0 amd64 1.56.1-1 [131 kB]
+Get:68 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 less amd64 487-0.1 [112 kB]
+Get:69 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libglib2.0-data all 2.56.4-0ubuntu0.18.04.3 [4608 B]
+Get:70 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libicu60 amd64 60.2-3ubuntu3 [8054 kB]
+Get:71 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libnss-systemd amd64 237-3ubuntu10.22 [105 kB]
+Get:72 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libpam-systemd amd64 237-3ubuntu10.22 [108 kB]
+Get:73 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libxml2 amd64 2.9.4+dfsg1-6.1ubuntu1.2 [663 kB]
+Get:74 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 netbase all 5.4 [12.7 kB]
+Get:75 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 python3-dbus amd64 1.2.6-1 [89.9 kB]
+Get:76 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 python3-gi amd64 3.26.1-2ubuntu1 [153 kB]
+Get:77 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 networkd-dispatcher all 1.7-0ubuntu3.3 [13.3 kB]
+Get:78 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 shared-mime-info amd64 1.9-2 [426 kB]
+Get:79 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 xdg-user-dirs amd64 0.17-1ubuntu1 [48.0 kB]
+Get:80 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 xz-utils amd64 5.2.2-1.3 [83.8 kB]
+Get:81 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 krb5-locales all 1.16-2ubuntu0.1 [13.5 kB]
+Get:82 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libpsl5 amd64 0.19.1-5build1 [41.8 kB]
+Get:83 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libxmuu1 amd64 2:1.1.2-2 [9674 B]
+Get:84 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 manpages all 4.15-1 [1234 kB]
+Get:85 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 publicsuffix all 20180223.1310-1 [97.6 kB]
+Get:86 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 wget amd64 1.19.4-1ubuntu2.2 [316 kB]
+Get:87 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 xauth amd64 1:1.0.10-1 [24.6 kB]
+Get:88 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 binutils-common amd64 2.30-21ubuntu1~18.04.1 [193 kB]
+Get:89 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libbinutils amd64 2.30-21ubuntu1~18.04.1 [501 kB]
+Get:90 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 binutils-x86-64-linux-gnu amd64 2.30-21ubuntu1~18.04.1 [1854 kB]
+Get:91 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 binutils amd64 2.30-21ubuntu1~18.04.1 [3396 B]
+Get:92 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 cmake-data all 3.10.2-1ubuntu2 [1331 kB]
+Get:93 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libarchive13 amd64 3.2.2-3.1ubuntu0.3 [288 kB]
+Get:94 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libroken18-heimdal amd64 7.5.0+dfsg-1 [41.3 kB]
+Get:95 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libasn1-8-heimdal amd64 7.5.0+dfsg-1 [175 kB]
+Get:96 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libheimbase1-heimdal amd64 7.5.0+dfsg-1 [29.3 kB]
+Get:97 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libhcrypto4-heimdal amd64 7.5.0+dfsg-1 [85.9 kB]
+Get:98 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libwind0-heimdal amd64 7.5.0+dfsg-1 [47.8 kB]
+Get:99 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libhx509-5-heimdal amd64 7.5.0+dfsg-1 [107 kB]
+Get:100 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libkrb5-26-heimdal amd64 7.5.0+dfsg-1 [206 kB]
+Get:101 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libheimntlm0-heimdal amd64 7.5.0+dfsg-1 [14.8 kB]
+Get:102 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libgssapi3-heimdal amd64 7.5.0+dfsg-1 [96.5 kB]
+Get:103 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libsasl2-modules-db amd64 2.1.27~101-g0780600+dfsg-3ubuntu2 [14.8 kB]
+Get:104 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libsasl2-2 amd64 2.1.27~101-g0780600+dfsg-3ubuntu2 [49.2 kB]
+Get:105 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libldap-common all 2.4.45+dfsg-1ubuntu1.2 [16.7 kB]
+Get:106 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libldap-2.4-2 amd64 2.4.45+dfsg-1ubuntu1.2 [155 kB]
+Get:107 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libnghttp2-14 amd64 1.30.0-1ubuntu1 [77.8 kB]
+Get:108 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-1 [54.2 kB]
+Get:109 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libcurl4 amd64 7.58.0-2ubuntu3.7 [214 kB]
+Get:110 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libjsoncpp1 amd64 1.7.4-3 [73.6 kB]
+Get:111 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 librhash0 amd64 1.3.6-2 [78.1 kB]
+Get:112 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libuv1 amd64 1.18.0-3 [64.4 kB]
+Get:113 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 cmake amd64 3.10.2-1ubuntu2 [3138 kB]
+Get:114 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 gcc-7-base amd64 7.4.0-1ubuntu1~18.04 [19.0 kB]
+Get:115 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libisl19 amd64 0.19-1 [551 kB]
+Get:116 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libmpfr6 amd64 4.0.1-1 [243 kB]
+Get:117 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libmpc3 amd64 1.1.0-1 [40.8 kB]
+Get:118 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 cpp-7 amd64 7.4.0-1ubuntu1~18.04 [6740 kB]
+Get:119 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 cpp amd64 4:7.4.0-1ubuntu2.2 [27.6 kB]
+Get:120 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libcc1-0 amd64 8.3.0-6ubuntu1~18.04 [47.4 kB]
+Get:121 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libgomp1 amd64 8.3.0-6ubuntu1~18.04 [76.4 kB]
+Get:122 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libitm1 amd64 8.3.0-6ubuntu1~18.04 [27.9 kB]
+Get:123 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libatomic1 amd64 8.3.0-6ubuntu1~18.04 [9180 B]
+Get:124 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libasan4 amd64 7.4.0-1ubuntu1~18.04 [359 kB]
+Get:125 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 liblsan0 amd64 8.3.0-6ubuntu1~18.04 [133 kB]
+Get:126 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libtsan0 amd64 8.3.0-6ubuntu1~18.04 [288 kB]
+Get:127 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libubsan0 amd64 7.4.0-1ubuntu1~18.04 [126 kB]
+Get:128 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libcilkrts5 amd64 7.4.0-1ubuntu1~18.04 [42.5 kB]
+Get:129 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libmpx2 amd64 8.3.0-6ubuntu1~18.04 [11.6 kB]
+Get:130 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libquadmath0 amd64 8.3.0-6ubuntu1~18.04 [134 kB]
+Get:131 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libgcc-7-dev amd64 7.4.0-1ubuntu1~18.04 [2381 kB]
+Get:132 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 gcc-7 amd64 7.4.0-1ubuntu1~18.04 [7462 kB]
+Get:133 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 gcc amd64 4:7.4.0-1ubuntu2.2 [5184 B]
+Get:134 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libc-dev-bin amd64 2.27-3ubuntu1 [71.8 kB]
+Get:135 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 linux-libc-dev amd64 4.15.0-51.55 [1005 kB]
+Get:136 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libc6-dev amd64 2.27-3ubuntu1 [2587 kB]
+Get:137 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libstdc++-7-dev amd64 7.4.0-1ubuntu1~18.04 [1467 kB]
+Get:138 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 g++-7 amd64 7.4.0-1ubuntu1~18.04 [7575 kB]
+Get:139 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 g++ amd64 4:7.4.0-1ubuntu2.2 [1568 B]
+Get:140 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 libcurl3-gnutls amd64 7.58.0-2ubuntu3.7 [212 kB]
+Get:141 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 liberror-perl all 0.17025-1 [22.8 kB]
+Get:142 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 git-man all 1:2.17.1-1ubuntu0.4 [803 kB]
+Get:143 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 git amd64 1:2.17.1-1ubuntu0.4 [3907 kB]
+Get:144 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 libsasl2-modules amd64 2.1.27~101-g0780600+dfsg-3ubuntu2 [48.7 kB]
+Get:145 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 make amd64 4.1-9.1ubuntu1 [154 kB]
+Get:146 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 manpages-dev all 4.15-1 [2217 kB]
+Get:147 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 ncurses-term all 6.1-1ubuntu1.18.04 [248 kB]
+Get:148 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 patch amd64 2.7.6-2ubuntu1 [102 kB]
+Get:149 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 python3-certifi all 2018.1.18-2 [144 kB]
+Get:150 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 python3-pkg-resources all 39.0.1-2 [98.8 kB]
+Get:151 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 python3-chardet all 3.0.4-1 [80.3 kB]
+Get:152 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 python3-idna all 2.6-1 [32.5 kB]
+Get:153 http://ftp.uni-stuttgart.de/ubuntu bionic/main amd64 python3-six all 1.11.0-2 [11.4 kB]
+Get:154 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 python3-urllib3 all 1.22-1ubuntu0.18.04.1 [86.0 kB]
+Get:155 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 python3-requests all 2.18.4-2ubuntu0.1 [58.3 kB]
+Get:156 http://ftp.uni-stuttgart.de/ubuntu bionic-updates/main amd64 ssh-import-id all 5.7-0ubuntu1.1 [10.9 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 83.5 MB in 4s (20.3 MB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4039 files and directories currently installed.)
+Preparing to unpack .../libsystemd0_237-3ubuntu10.22_amd64.deb ...
+Unpacking libsystemd0:amd64 (237-3ubuntu10.22) over (237-3ubuntu10.13) ...
+Setting up libsystemd0:amd64 (237-3ubuntu10.22) ...
+Selecting previously unselected package libssl1.1:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4039 files and directories currently installed.)
+Preparing to unpack .../libssl1.1_1.1.1-1ubuntu2.1~18.04.1_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.1) ...
+Selecting previously unselected package libpython3.6-minimal:amd64.
+Preparing to unpack .../libpython3.6-minimal_3.6.8-1~18.04.1_amd64.deb ...
+Unpacking libpython3.6-minimal:amd64 (3.6.8-1~18.04.1) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../libexpat1_2.2.5-3_amd64.deb ...
+Unpacking libexpat1:amd64 (2.2.5-3) ...
+Selecting previously unselected package python3.6-minimal.
+Preparing to unpack .../python3.6-minimal_3.6.8-1~18.04.1_amd64.deb ...
+Unpacking python3.6-minimal (3.6.8-1~18.04.1) ...
+Setting up libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.1) ...
+Setting up libpython3.6-minimal:amd64 (3.6.8-1~18.04.1) ...
+Setting up libexpat1:amd64 (2.2.5-3) ...
+Setting up python3.6-minimal (3.6.8-1~18.04.1) ...
+Selecting previously unselected package python3-minimal.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4296 files and directories currently installed.)
+Preparing to unpack .../0-python3-minimal_3.6.7-1~18.04_amd64.deb ...
+Unpacking python3-minimal (3.6.7-1~18.04) ...
+Selecting previously unselected package mime-support.
+Preparing to unpack .../1-mime-support_3.60ubuntu1_all.deb ...
+Unpacking mime-support (3.60ubuntu1) ...
+Selecting previously unselected package libmpdec2:amd64.
+Preparing to unpack .../2-libmpdec2_2.4.2-1ubuntu1_amd64.deb ...
+Unpacking libmpdec2:amd64 (2.4.2-1ubuntu1) ...
+Selecting previously unselected package readline-common.
+Preparing to unpack .../3-readline-common_7.0-3_all.deb ...
+Unpacking readline-common (7.0-3) ...
+Selecting previously unselected package libreadline7:amd64.
+Preparing to unpack .../4-libreadline7_7.0-3_amd64.deb ...
+Unpacking libreadline7:amd64 (7.0-3) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../5-libsqlite3-0_3.22.0-1_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.22.0-1) ...
+Selecting previously unselected package libpython3.6-stdlib:amd64.
+Preparing to unpack .../6-libpython3.6-stdlib_3.6.8-1~18.04.1_amd64.deb ...
+Unpacking libpython3.6-stdlib:amd64 (3.6.8-1~18.04.1) ...
+Selecting previously unselected package python3.6.
+Preparing to unpack .../7-python3.6_3.6.8-1~18.04.1_amd64.deb ...
+Unpacking python3.6 (3.6.8-1~18.04.1) ...
+Selecting previously unselected package libpython3-stdlib:amd64.
+Preparing to unpack .../8-libpython3-stdlib_3.6.7-1~18.04_amd64.deb ...
+Unpacking libpython3-stdlib:amd64 (3.6.7-1~18.04) ...
+Setting up python3-minimal (3.6.7-1~18.04) ...
+Selecting previously unselected package python3.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4754 files and directories currently installed.)
+Preparing to unpack .../0-python3_3.6.7-1~18.04_amd64.deb ...
+Unpacking python3 (3.6.7-1~18.04) ...
+Selecting previously unselected package libcap2:amd64.
+Preparing to unpack .../1-libcap2_1%3a2.25-1.2_amd64.deb ...
+Unpacking libcap2:amd64 (1:2.25-1.2) ...
+Selecting previously unselected package libargon2-0:amd64.
+Preparing to unpack .../2-libargon2-0_0~20161029-1.1_amd64.deb ...
+Unpacking libargon2-0:amd64 (0~20161029-1.1) ...
+Selecting previously unselected package libdevmapper1.02.1:amd64.
+Preparing to unpack .../3-libdevmapper1.02.1_2%3a1.02.145-4.1ubuntu3_amd64.deb ...
+Unpacking libdevmapper1.02.1:amd64 (2:1.02.145-4.1ubuntu3) ...
+Selecting previously unselected package libjson-c3:amd64.
+Preparing to unpack .../4-libjson-c3_0.12.1-1.3_amd64.deb ...
+Unpacking libjson-c3:amd64 (0.12.1-1.3) ...
+Selecting previously unselected package libcryptsetup12:amd64.
+Preparing to unpack .../5-libcryptsetup12_2%3a2.0.2-1ubuntu1.1_amd64.deb ...
+Unpacking libcryptsetup12:amd64 (2:2.0.2-1ubuntu1.1) ...
+Selecting previously unselected package libidn11:amd64.
+Preparing to unpack .../6-libidn11_1.33-2.1ubuntu1.2_amd64.deb ...
+Unpacking libidn11:amd64 (1.33-2.1ubuntu1.2) ...
+Selecting previously unselected package libip4tc0:amd64.
+Preparing to unpack .../7-libip4tc0_1.6.1-2ubuntu2_amd64.deb ...
+Unpacking libip4tc0:amd64 (1.6.1-2ubuntu2) ...
+Selecting previously unselected package libapparmor1:amd64.
+Preparing to unpack .../8-libapparmor1_2.12-4ubuntu5.1_amd64.deb ...
+Unpacking libapparmor1:amd64 (2.12-4ubuntu5.1) ...
+Selecting previously unselected package libkmod2:amd64.
+Preparing to unpack .../9-libkmod2_24-1ubuntu3.2_amd64.deb ...
+Unpacking libkmod2:amd64 (24-1ubuntu3.2) ...
+Setting up libcap2:amd64 (1:2.25-1.2) ...
+Setting up libargon2-0:amd64 (0~20161029-1.1) ...
+Setting up libdevmapper1.02.1:amd64 (2:1.02.145-4.1ubuntu3) ...
+Setting up libjson-c3:amd64 (0.12.1-1.3) ...
+Setting up libcryptsetup12:amd64 (2:2.0.2-1ubuntu1.1) ...
+Setting up libidn11:amd64 (1.33-2.1ubuntu1.2) ...
+Setting up libip4tc0:amd64 (1.6.1-2ubuntu2) ...
+Selecting previously unselected package systemd.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4835 files and directories currently installed.)
+Preparing to unpack .../systemd_237-3ubuntu10.22_amd64.deb ...
+Unpacking systemd (237-3ubuntu10.22) ...
+Setting up libapparmor1:amd64 (2.12-4ubuntu5.1) ...
+Setting up libkmod2:amd64 (24-1ubuntu3.2) ...
+Setting up systemd (237-3ubuntu10.22) ...
+Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /lib/systemd/system/getty@.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /lib/systemd/system/remote-fs.target.
+Created symlink /etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service → /lib/systemd/system/systemd-timesyncd.service.
+Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /lib/systemd/system/systemd-resolved.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/systemd-resolved.service → /lib/systemd/system/systemd-resolved.service.
+ln: failed to create symbolic link '/etc/resolv.conf': Device or resource busy
+Created symlink /etc/systemd/system/multi-user.target.wants/ondemand.service → /lib/systemd/system/ondemand.service.
+Initializing machine ID from random generator.
+Selecting previously unselected package systemd-sysv.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5545 files and directories currently installed.)
+Preparing to unpack .../systemd-sysv_237-3ubuntu10.22_amd64.deb ...
+Unpacking systemd-sysv (237-3ubuntu10.22) ...
+Selecting previously unselected package multiarch-support.
+Preparing to unpack .../multiarch-support_2.27-3ubuntu1_amd64.deb ...
+Unpacking multiarch-support (2.27-3ubuntu1) ...
+Setting up multiarch-support (2.27-3ubuntu1) ...
+Selecting previously unselected package libxau6:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5565 files and directories currently installed.)
+Preparing to unpack .../00-libxau6_1%3a1.0.8-1_amd64.deb ...
+Unpacking libxau6:amd64 (1:1.0.8-1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../01-libbsd0_0.8.7-1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.8.7-1) ...
+Selecting previously unselected package libxdmcp6:amd64.
+Preparing to unpack .../02-libxdmcp6_1%3a1.1.2-3_amd64.deb ...
+Unpacking libxdmcp6:amd64 (1:1.1.2-3) ...
+Selecting previously unselected package libxcb1:amd64.
+Preparing to unpack .../03-libxcb1_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb1:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libx11-data.
+Preparing to unpack .../04-libx11-data_2%3a1.6.4-3ubuntu0.2_all.deb ...
+Unpacking libx11-data (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package libx11-6:amd64.
+Preparing to unpack .../05-libx11-6_2%3a1.6.4-3ubuntu0.2_amd64.deb ...
+Unpacking libx11-6:amd64 (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package libxext6:amd64.
+Preparing to unpack .../06-libxext6_2%3a1.3.3-1_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.3-1) ...
+Selecting previously unselected package liblzo2-2:amd64.
+Preparing to unpack .../07-liblzo2-2_2.08-1.2_amd64.deb ...
+Unpacking liblzo2-2:amd64 (2.08-1.2) ...
+Selecting previously unselected package perl-modules-5.26.
+Preparing to unpack .../08-perl-modules-5.26_5.26.1-6ubuntu0.3_all.deb ...
+Unpacking perl-modules-5.26 (5.26.1-6ubuntu0.3) ...
+Selecting previously unselected package libgdbm5:amd64.
+Preparing to unpack .../09-libgdbm5_1.14.1-6_amd64.deb ...
+Unpacking libgdbm5:amd64 (1.14.1-6) ...
+Selecting previously unselected package libgdbm-compat4:amd64.
+Preparing to unpack .../10-libgdbm-compat4_1.14.1-6_amd64.deb ...
+Unpacking libgdbm-compat4:amd64 (1.14.1-6) ...
+Selecting previously unselected package libperl5.26:amd64.
+Preparing to unpack .../11-libperl5.26_5.26.1-6ubuntu0.3_amd64.deb ...
+Unpacking libperl5.26:amd64 (5.26.1-6ubuntu0.3) ...
+Selecting previously unselected package perl.
+Preparing to unpack .../12-perl_5.26.1-6ubuntu0.3_amd64.deb ...
+Unpacking perl (5.26.1-6ubuntu0.3) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../13-libedit2_3.1-20170329-1_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20170329-1) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../14-libkrb5support0_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../15-libk5crypto3_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../16-libkeyutils1_1.5.9-9.2ubuntu2_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.5.9-9.2ubuntu2) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../17-libkrb5-3_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../18-libgssapi-krb5-2_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libssl1.0.0:amd64.
+Preparing to unpack .../19-libssl1.0.0_1.0.2n-1ubuntu5.3_amd64.deb ...
+Unpacking libssl1.0.0:amd64 (1.0.2n-1ubuntu5.3) ...
+Selecting previously unselected package openssh-client.
+Preparing to unpack .../20-openssh-client_1%3a7.6p1-4ubuntu0.3_amd64.deb ...
+Unpacking openssh-client (1:7.6p1-4ubuntu0.3) ...
+Selecting previously unselected package openssh-sftp-server.
+Preparing to unpack .../21-openssh-sftp-server_1%3a7.6p1-4ubuntu0.3_amd64.deb ...
+Unpacking openssh-sftp-server (1:7.6p1-4ubuntu0.3) ...
+Selecting previously unselected package ucf.
+Preparing to unpack .../22-ucf_3.0038_all.deb ...
+Moving old data out of the way
+Unpacking ucf (3.0038) ...
+Selecting previously unselected package libwrap0:amd64.
+Preparing to unpack .../23-libwrap0_7.6.q-27_amd64.deb ...
+Unpacking libwrap0:amd64 (7.6.q-27) ...
+Selecting previously unselected package openssh-server.
+Preparing to unpack .../24-openssh-server_1%3a7.6p1-4ubuntu0.3_amd64.deb ...
+Unpacking openssh-server (1:7.6p1-4ubuntu0.3) ...
+Selecting previously unselected package ssh.
+Preparing to unpack .../25-ssh_1%3a7.6p1-4ubuntu0.3_all.deb ...
+Unpacking ssh (1:7.6p1-4ubuntu0.3) ...
+Preparing to unpack .../26-gcc-8-base_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking gcc-8-base:amd64 (8.3.0-6ubuntu1~18.04) over (8.2.0-1ubuntu2~18.04) ...
+Setting up gcc-8-base:amd64 (8.3.0-6ubuntu1~18.04) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7949 files and directories currently installed.)
+Preparing to unpack .../libstdc++6_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking libstdc++6:amd64 (8.3.0-6ubuntu1~18.04) over (8.2.0-1ubuntu2~18.04) ...
+Setting up libstdc++6:amd64 (8.3.0-6ubuntu1~18.04) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7949 files and directories currently installed.)
+Preparing to unpack .../libgcc1_1%3a8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking libgcc1:amd64 (1:8.3.0-6ubuntu1~18.04) over (1:8.2.0-1ubuntu2~18.04) ...
+Setting up libgcc1:amd64 (1:8.3.0-6ubuntu1~18.04) ...
+Selecting previously unselected package openssl.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7949 files and directories currently installed.)
+Preparing to unpack .../00-openssl_1.1.1-1ubuntu2.1~18.04.1_amd64.deb ...
+Unpacking openssl (1.1.1-1ubuntu2.1~18.04.1) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../01-ca-certificates_20180409_all.deb ...
+Unpacking ca-certificates (20180409) ...
+Selecting previously unselected package libdbus-1-3:amd64.
+Preparing to unpack .../02-libdbus-1-3_1.12.2-1ubuntu1.1_amd64.deb ...
+Unpacking libdbus-1-3:amd64 (1.12.2-1ubuntu1.1) ...
+Selecting previously unselected package dbus.
+Preparing to unpack .../03-dbus_1.12.2-1ubuntu1.1_amd64.deb ...
+Unpacking dbus (1.12.2-1ubuntu1.1) ...
+Selecting previously unselected package dmsetup.
+Preparing to unpack .../04-dmsetup_2%3a1.02.145-4.1ubuntu3_amd64.deb ...
+Unpacking dmsetup (2:1.02.145-4.1ubuntu3) ...
+Selecting previously unselected package libmagic-mgc.
+Preparing to unpack .../05-libmagic-mgc_1%3a5.32-2ubuntu0.2_amd64.deb ...
+Unpacking libmagic-mgc (1:5.32-2ubuntu0.2) ...
+Selecting previously unselected package libmagic1:amd64.
+Preparing to unpack .../06-libmagic1_1%3a5.32-2ubuntu0.2_amd64.deb ...
+Unpacking libmagic1:amd64 (1:5.32-2ubuntu0.2) ...
+Selecting previously unselected package file.
+Preparing to unpack .../07-file_1%3a5.32-2ubuntu0.2_amd64.deb ...
+Unpacking file (1:5.32-2ubuntu0.2) ...
+Selecting previously unselected package libglib2.0-0:amd64.
+Preparing to unpack .../08-libglib2.0-0_2.56.4-0ubuntu0.18.04.3_amd64.deb ...
+Unpacking libglib2.0-0:amd64 (2.56.4-0ubuntu0.18.04.3) ...
+Selecting previously unselected package libgirepository-1.0-1:amd64.
+Preparing to unpack .../09-libgirepository-1.0-1_1.56.1-1_amd64.deb ...
+Unpacking libgirepository-1.0-1:amd64 (1.56.1-1) ...
+Selecting previously unselected package gir1.2-glib-2.0:amd64.
+Preparing to unpack .../10-gir1.2-glib-2.0_1.56.1-1_amd64.deb ...
+Unpacking gir1.2-glib-2.0:amd64 (1.56.1-1) ...
+Selecting previously unselected package less.
+Preparing to unpack .../11-less_487-0.1_amd64.deb ...
+Unpacking less (487-0.1) ...
+Selecting previously unselected package libglib2.0-data.
+Preparing to unpack .../12-libglib2.0-data_2.56.4-0ubuntu0.18.04.3_all.deb ...
+Unpacking libglib2.0-data (2.56.4-0ubuntu0.18.04.3) ...
+Selecting previously unselected package libicu60:amd64.
+Preparing to unpack .../13-libicu60_60.2-3ubuntu3_amd64.deb ...
+Unpacking libicu60:amd64 (60.2-3ubuntu3) ...
+Selecting previously unselected package libnss-systemd:amd64.
+Preparing to unpack .../14-libnss-systemd_237-3ubuntu10.22_amd64.deb ...
+Unpacking libnss-systemd:amd64 (237-3ubuntu10.22) ...
+Selecting previously unselected package libpam-systemd:amd64.
+Preparing to unpack .../15-libpam-systemd_237-3ubuntu10.22_amd64.deb ...
+Unpacking libpam-systemd:amd64 (237-3ubuntu10.22) ...
+Selecting previously unselected package libxml2:amd64.
+Preparing to unpack .../16-libxml2_2.9.4+dfsg1-6.1ubuntu1.2_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.4+dfsg1-6.1ubuntu1.2) ...
+Selecting previously unselected package netbase.
+Preparing to unpack .../17-netbase_5.4_all.deb ...
+Unpacking netbase (5.4) ...
+Selecting previously unselected package python3-dbus.
+Preparing to unpack .../18-python3-dbus_1.2.6-1_amd64.deb ...
+Unpacking python3-dbus (1.2.6-1) ...
+Selecting previously unselected package python3-gi.
+Preparing to unpack .../19-python3-gi_3.26.1-2ubuntu1_amd64.deb ...
+Unpacking python3-gi (3.26.1-2ubuntu1) ...
+Selecting previously unselected package networkd-dispatcher.
+Preparing to unpack .../20-networkd-dispatcher_1.7-0ubuntu3.3_all.deb ...
+Unpacking networkd-dispatcher (1.7-0ubuntu3.3) ...
+Selecting previously unselected package shared-mime-info.
+Preparing to unpack .../21-shared-mime-info_1.9-2_amd64.deb ...
+Unpacking shared-mime-info (1.9-2) ...
+Selecting previously unselected package xdg-user-dirs.
+Preparing to unpack .../22-xdg-user-dirs_0.17-1ubuntu1_amd64.deb ...
+Unpacking xdg-user-dirs (0.17-1ubuntu1) ...
+Selecting previously unselected package xz-utils.
+Preparing to unpack .../23-xz-utils_5.2.2-1.3_amd64.deb ...
+Unpacking xz-utils (5.2.2-1.3) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../24-krb5-locales_1.16-2ubuntu0.1_all.deb ...
+Unpacking krb5-locales (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../25-libpsl5_0.19.1-5build1_amd64.deb ...
+Unpacking libpsl5:amd64 (0.19.1-5build1) ...
+Selecting previously unselected package libxmuu1:amd64.
+Preparing to unpack .../26-libxmuu1_2%3a1.1.2-2_amd64.deb ...
+Unpacking libxmuu1:amd64 (2:1.1.2-2) ...
+Selecting previously unselected package manpages.
+Preparing to unpack .../27-manpages_4.15-1_all.deb ...
+Unpacking manpages (4.15-1) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../28-publicsuffix_20180223.1310-1_all.deb ...
+Unpacking publicsuffix (20180223.1310-1) ...
+Selecting previously unselected package wget.
+Preparing to unpack .../29-wget_1.19.4-1ubuntu2.2_amd64.deb ...
+Unpacking wget (1.19.4-1ubuntu2.2) ...
+Selecting previously unselected package xauth.
+Preparing to unpack .../30-xauth_1%3a1.0.10-1_amd64.deb ...
+Unpacking xauth (1:1.0.10-1) ...
+Selecting previously unselected package binutils-common:amd64.
+Preparing to unpack .../31-binutils-common_2.30-21ubuntu1~18.04.1_amd64.deb ...
+Unpacking binutils-common:amd64 (2.30-21ubuntu1~18.04.1) ...
+Selecting previously unselected package libbinutils:amd64.
+Preparing to unpack .../32-libbinutils_2.30-21ubuntu1~18.04.1_amd64.deb ...
+Unpacking libbinutils:amd64 (2.30-21ubuntu1~18.04.1) ...
+Selecting previously unselected package binutils-x86-64-linux-gnu.
+Preparing to unpack .../33-binutils-x86-64-linux-gnu_2.30-21ubuntu1~18.04.1_amd64.deb ...
+Unpacking binutils-x86-64-linux-gnu (2.30-21ubuntu1~18.04.1) ...
+Selecting previously unselected package binutils.
+Preparing to unpack .../34-binutils_2.30-21ubuntu1~18.04.1_amd64.deb ...
+Unpacking binutils (2.30-21ubuntu1~18.04.1) ...
+Selecting previously unselected package cmake-data.
+Preparing to unpack .../35-cmake-data_3.10.2-1ubuntu2_all.deb ...
+Unpacking cmake-data (3.10.2-1ubuntu2) ...
+Selecting previously unselected package libarchive13:amd64.
+Preparing to unpack .../36-libarchive13_3.2.2-3.1ubuntu0.3_amd64.deb ...
+Unpacking libarchive13:amd64 (3.2.2-3.1ubuntu0.3) ...
+Selecting previously unselected package libroken18-heimdal:amd64.
+Preparing to unpack .../37-libroken18-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libroken18-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libasn1-8-heimdal:amd64.
+Preparing to unpack .../38-libasn1-8-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libasn1-8-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libheimbase1-heimdal:amd64.
+Preparing to unpack .../39-libheimbase1-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libheimbase1-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libhcrypto4-heimdal:amd64.
+Preparing to unpack .../40-libhcrypto4-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libhcrypto4-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libwind0-heimdal:amd64.
+Preparing to unpack .../41-libwind0-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libwind0-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libhx509-5-heimdal:amd64.
+Preparing to unpack .../42-libhx509-5-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libhx509-5-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libkrb5-26-heimdal:amd64.
+Preparing to unpack .../43-libkrb5-26-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libkrb5-26-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libheimntlm0-heimdal:amd64.
+Preparing to unpack .../44-libheimntlm0-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libheimntlm0-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libgssapi3-heimdal:amd64.
+Preparing to unpack .../45-libgssapi3-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libgssapi3-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../46-libsasl2-modules-db_2.1.27~101-g0780600+dfsg-3ubuntu2_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../47-libsasl2-2_2.1.27~101-g0780600+dfsg-3ubuntu2_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../48-libldap-common_2.4.45+dfsg-1ubuntu1.2_all.deb ...
+Unpacking libldap-common (2.4.45+dfsg-1ubuntu1.2) ...
+Selecting previously unselected package libldap-2.4-2:amd64.
+Preparing to unpack .../49-libldap-2.4-2_2.4.45+dfsg-1ubuntu1.2_amd64.deb ...
+Unpacking libldap-2.4-2:amd64 (2.4.45+dfsg-1ubuntu1.2) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../50-libnghttp2-14_1.30.0-1ubuntu1_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.30.0-1ubuntu1) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../51-librtmp1_2.4+20151223.gitfa8646d.1-1_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-1) ...
+Selecting previously unselected package libcurl4:amd64.
+Preparing to unpack .../52-libcurl4_7.58.0-2ubuntu3.7_amd64.deb ...
+Unpacking libcurl4:amd64 (7.58.0-2ubuntu3.7) ...
+Selecting previously unselected package libjsoncpp1:amd64.
+Preparing to unpack .../53-libjsoncpp1_1.7.4-3_amd64.deb ...
+Unpacking libjsoncpp1:amd64 (1.7.4-3) ...
+Selecting previously unselected package librhash0:amd64.
+Preparing to unpack .../54-librhash0_1.3.6-2_amd64.deb ...
+Unpacking librhash0:amd64 (1.3.6-2) ...
+Selecting previously unselected package libuv1:amd64.
+Preparing to unpack .../55-libuv1_1.18.0-3_amd64.deb ...
+Unpacking libuv1:amd64 (1.18.0-3) ...
+Selecting previously unselected package cmake.
+Preparing to unpack .../56-cmake_3.10.2-1ubuntu2_amd64.deb ...
+Unpacking cmake (3.10.2-1ubuntu2) ...
+Selecting previously unselected package gcc-7-base:amd64.
+Preparing to unpack .../57-gcc-7-base_7.4.0-1ubuntu1~18.04_amd64.deb ...
+Unpacking gcc-7-base:amd64 (7.4.0-1ubuntu1~18.04) ...
+Selecting previously unselected package libisl19:amd64.
+Preparing to unpack .../58-libisl19_0.19-1_amd64.deb ...
+Unpacking libisl19:amd64 (0.19-1) ...
+Selecting previously unselected package libmpfr6:amd64.
+Preparing to unpack .../59-libmpfr6_4.0.1-1_amd64.deb ...
+Unpacking libmpfr6:amd64 (4.0.1-1) ...
+Selecting previously unselected package libmpc3:amd64.
+Preparing to unpack .../60-libmpc3_1.1.0-1_amd64.deb ...
+Unpacking libmpc3:amd64 (1.1.0-1) ...
+Selecting previously unselected package cpp-7.
+Preparing to unpack .../61-cpp-7_7.4.0-1ubuntu1~18.04_amd64.deb ...
+Unpacking cpp-7 (7.4.0-1ubuntu1~18.04) ...
+Selecting previously unselected package cpp.
+Preparing to unpack .../62-cpp_4%3a7.4.0-1ubuntu2.2_amd64.deb ...
+Unpacking cpp (4:7.4.0-1ubuntu2.2) ...
+Selecting previously unselected package libcc1-0:amd64.
+Preparing to unpack .../63-libcc1-0_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking libcc1-0:amd64 (8.3.0-6ubuntu1~18.04) ...
+Selecting previously unselected package libgomp1:amd64.
+Preparing to unpack .../64-libgomp1_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking libgomp1:amd64 (8.3.0-6ubuntu1~18.04) ...
+Selecting previously unselected package libitm1:amd64.
+Preparing to unpack .../65-libitm1_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking libitm1:amd64 (8.3.0-6ubuntu1~18.04) ...
+Selecting previously unselected package libatomic1:amd64.
+Preparing to unpack .../66-libatomic1_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking libatomic1:amd64 (8.3.0-6ubuntu1~18.04) ...
+Selecting previously unselected package libasan4:amd64.
+Preparing to unpack .../67-libasan4_7.4.0-1ubuntu1~18.04_amd64.deb ...
+Unpacking libasan4:amd64 (7.4.0-1ubuntu1~18.04) ...
+Selecting previously unselected package liblsan0:amd64.
+Preparing to unpack .../68-liblsan0_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking liblsan0:amd64 (8.3.0-6ubuntu1~18.04) ...
+Selecting previously unselected package libtsan0:amd64.
+Preparing to unpack .../69-libtsan0_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking libtsan0:amd64 (8.3.0-6ubuntu1~18.04) ...
+Selecting previously unselected package libubsan0:amd64.
+Preparing to unpack .../70-libubsan0_7.4.0-1ubuntu1~18.04_amd64.deb ...
+Unpacking libubsan0:amd64 (7.4.0-1ubuntu1~18.04) ...
+Selecting previously unselected package libcilkrts5:amd64.
+Preparing to unpack .../71-libcilkrts5_7.4.0-1ubuntu1~18.04_amd64.deb ...
+Unpacking libcilkrts5:amd64 (7.4.0-1ubuntu1~18.04) ...
+Selecting previously unselected package libmpx2:amd64.
+Preparing to unpack .../72-libmpx2_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking libmpx2:amd64 (8.3.0-6ubuntu1~18.04) ...
+Selecting previously unselected package libquadmath0:amd64.
+Preparing to unpack .../73-libquadmath0_8.3.0-6ubuntu1~18.04_amd64.deb ...
+Unpacking libquadmath0:amd64 (8.3.0-6ubuntu1~18.04) ...
+Selecting previously unselected package libgcc-7-dev:amd64.
+Preparing to unpack .../74-libgcc-7-dev_7.4.0-1ubuntu1~18.04_amd64.deb ...
+Unpacking libgcc-7-dev:amd64 (7.4.0-1ubuntu1~18.04) ...
+Selecting previously unselected package gcc-7.
+Preparing to unpack .../75-gcc-7_7.4.0-1ubuntu1~18.04_amd64.deb ...
+Unpacking gcc-7 (7.4.0-1ubuntu1~18.04) ...
+Selecting previously unselected package gcc.
+Preparing to unpack .../76-gcc_4%3a7.4.0-1ubuntu2.2_amd64.deb ...
+Unpacking gcc (4:7.4.0-1ubuntu2.2) ...
+Selecting previously unselected package libc-dev-bin.
+Preparing to unpack .../77-libc-dev-bin_2.27-3ubuntu1_amd64.deb ...
+Unpacking libc-dev-bin (2.27-3ubuntu1) ...
+Selecting previously unselected package linux-libc-dev:amd64.
+Preparing to unpack .../78-linux-libc-dev_4.15.0-51.55_amd64.deb ...
+Unpacking linux-libc-dev:amd64 (4.15.0-51.55) ...
+Selecting previously unselected package libc6-dev:amd64.
+Preparing to unpack .../79-libc6-dev_2.27-3ubuntu1_amd64.deb ...
+Unpacking libc6-dev:amd64 (2.27-3ubuntu1) ...
+Selecting previously unselected package libstdc++-7-dev:amd64.
+Preparing to unpack .../80-libstdc++-7-dev_7.4.0-1ubuntu1~18.04_amd64.deb ...
+Unpacking libstdc++-7-dev:amd64 (7.4.0-1ubuntu1~18.04) ...
+Selecting previously unselected package g++-7.
+Preparing to unpack .../81-g++-7_7.4.0-1ubuntu1~18.04_amd64.deb ...
+Unpacking g++-7 (7.4.0-1ubuntu1~18.04) ...
+Selecting previously unselected package g++.
+Preparing to unpack .../82-g++_4%3a7.4.0-1ubuntu2.2_amd64.deb ...
+Unpacking g++ (4:7.4.0-1ubuntu2.2) ...
+Selecting previously unselected package libcurl3-gnutls:amd64.
+Preparing to unpack .../83-libcurl3-gnutls_7.58.0-2ubuntu3.7_amd64.deb ...
+Unpacking libcurl3-gnutls:amd64 (7.58.0-2ubuntu3.7) ...
+Selecting previously unselected package liberror-perl.
+Preparing to unpack .../84-liberror-perl_0.17025-1_all.deb ...
+Unpacking liberror-perl (0.17025-1) ...
+Selecting previously unselected package git-man.
+Preparing to unpack .../85-git-man_1%3a2.17.1-1ubuntu0.4_all.deb ...
+Unpacking git-man (1:2.17.1-1ubuntu0.4) ...
+Selecting previously unselected package git.
+Preparing to unpack .../86-git_1%3a2.17.1-1ubuntu0.4_amd64.deb ...
+Unpacking git (1:2.17.1-1ubuntu0.4) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../87-libsasl2-modules_2.1.27~101-g0780600+dfsg-3ubuntu2_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2) ...
+Selecting previously unselected package make.
+Preparing to unpack .../88-make_4.1-9.1ubuntu1_amd64.deb ...
+Unpacking make (4.1-9.1ubuntu1) ...
+Selecting previously unselected package manpages-dev.
+Preparing to unpack .../89-manpages-dev_4.15-1_all.deb ...
+Unpacking manpages-dev (4.15-1) ...
+Selecting previously unselected package ncurses-term.
+Preparing to unpack .../90-ncurses-term_6.1-1ubuntu1.18.04_all.deb ...
+Unpacking ncurses-term (6.1-1ubuntu1.18.04) ...
+Selecting previously unselected package patch.
+Preparing to unpack .../91-patch_2.7.6-2ubuntu1_amd64.deb ...
+Unpacking patch (2.7.6-2ubuntu1) ...
+Selecting previously unselected package python3-certifi.
+Preparing to unpack .../92-python3-certifi_2018.1.18-2_all.deb ...
+Unpacking python3-certifi (2018.1.18-2) ...
+Selecting previously unselected package python3-pkg-resources.
+Preparing to unpack .../93-python3-pkg-resources_39.0.1-2_all.deb ...
+Unpacking python3-pkg-resources (39.0.1-2) ...
+Selecting previously unselected package python3-chardet.
+Preparing to unpack .../94-python3-chardet_3.0.4-1_all.deb ...
+Unpacking python3-chardet (3.0.4-1) ...
+Selecting previously unselected package python3-idna.
+Preparing to unpack .../95-python3-idna_2.6-1_all.deb ...
+Unpacking python3-idna (2.6-1) ...
+Selecting previously unselected package python3-six.
+Preparing to unpack .../96-python3-six_1.11.0-2_all.deb ...
+Unpacking python3-six (1.11.0-2) ...
+Selecting previously unselected package python3-urllib3.
+Preparing to unpack .../97-python3-urllib3_1.22-1ubuntu0.18.04.1_all.deb ...
+Unpacking python3-urllib3 (1.22-1ubuntu0.18.04.1) ...
+Selecting previously unselected package python3-requests.
+Preparing to unpack .../98-python3-requests_2.18.4-2ubuntu0.1_all.deb ...
+Unpacking python3-requests (2.18.4-2ubuntu0.1) ...
+Selecting previously unselected package ssh-import-id.
+Preparing to unpack .../99-ssh-import-id_5.7-0ubuntu1.1_all.deb ...
+Unpacking ssh-import-id (5.7-0ubuntu1.1) ...
+Setting up libquadmath0:amd64 (8.3.0-6ubuntu1~18.04) ...
+Setting up libedit2:amd64 (3.1-20170329-1) ...
+Setting up libgomp1:amd64 (8.3.0-6ubuntu1~18.04) ...
+Setting up libatomic1:amd64 (8.3.0-6ubuntu1~18.04) ...
+Setting up readline-common (7.0-3) ...
+Setting up ncurses-term (6.1-1ubuntu1.18.04) ...
+Setting up manpages (4.15-1) ...
+Setting up libnss-systemd:amd64 (237-3ubuntu10.22) ...
+First installation detected...
+Checking NSS setup...
+Setting up git-man (1:2.17.1-1ubuntu0.4) ...
+Setting up libicu60:amd64 (60.2-3ubuntu3) ...
+Setting up libcc1-0:amd64 (8.3.0-6ubuntu1~18.04) ...
+Setting up less (487-0.1) ...
+Setting up make (4.1-9.1ubuntu1) ...
+Setting up libssl1.0.0:amd64 (1.0.2n-1ubuntu5.3) ...
+Setting up libnghttp2-14:amd64 (1.30.0-1ubuntu1) ...
+Setting up mime-support (3.60ubuntu1) ...
+Setting up libldap-common (2.4.45+dfsg-1ubuntu1.2) ...
+Setting up libuv1:amd64 (1.18.0-3) ...
+Setting up libreadline7:amd64 (7.0-3) ...
+Setting up libpsl5:amd64 (0.19.1-5build1) ...
+Setting up systemd-sysv (237-3ubuntu10.22) ...
+Setting up libtsan0:amd64 (8.3.0-6ubuntu1~18.04) ...
+Setting up libglib2.0-0:amd64 (2.56.4-0ubuntu0.18.04.3) ...
+No schema files found: doing nothing.
+Setting up libsasl2-modules-db:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2) ...
+Setting up linux-libc-dev:amd64 (4.15.0-51.55) ...
+Setting up libmpfr6:amd64 (4.0.1-1) ...
+Setting up libsasl2-2:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2) ...
+Setting up cmake-data (3.10.2-1ubuntu2) ...
+Setting up libroken18-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-1) ...
+Setting up perl-modules-5.26 (5.26.1-6ubuntu0.3) ...
+Setting up libgdbm5:amd64 (1.14.1-6) ...
+Setting up libbsd0:amd64 (0.8.7-1) ...
+Setting up libkrb5support0:amd64 (1.16-2ubuntu0.1) ...
+Setting up ucf (3.0038) ...
+Setting up libgirepository-1.0-1:amd64 (1.56.1-1) ...
+Setting up libxml2:amd64 (2.9.4+dfsg1-6.1ubuntu1.2) ...
+Setting up libmagic-mgc (1:5.32-2ubuntu0.2) ...
+Setting up libmagic1:amd64 (1:5.32-2ubuntu0.2) ...
+Setting up librhash0:amd64 (1.3.6-2) ...
+Setting up liblsan0:amd64 (8.3.0-6ubuntu1~18.04) ...
+Setting up gcc-7-base:amd64 (7.4.0-1ubuntu1~18.04) ...
+Setting up binutils-common:amd64 (2.30-21ubuntu1~18.04.1) ...
+Setting up libmpx2:amd64 (8.3.0-6ubuntu1~18.04) ...
+Setting up gir1.2-glib-2.0:amd64 (1.56.1-1) ...
+Setting up patch (2.7.6-2ubuntu1) ...
+Setting up libglib2.0-data (2.56.4-0ubuntu0.18.04.3) ...
+Setting up krb5-locales (1.16-2ubuntu0.1) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Setting up publicsuffix (20180223.1310-1) ...
+Setting up xz-utils (5.2.2-1.3) ...
+update-alternatives: using /usr/bin/xz to provide /usr/bin/lzma (lzma) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzma.1.gz because associated file /usr/share/man/man1/xz.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/unlzma.1.gz because associated file /usr/share/man/man1/unxz.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzcat.1.gz because associated file /usr/share/man/man1/xzcat.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzmore.1.gz because associated file /usr/share/man/man1/xzmore.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzless.1.gz because associated file /usr/share/man/man1/xzless.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzdiff.1.gz because associated file /usr/share/man/man1/xzdiff.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzcmp.1.gz because associated file /usr/share/man/man1/xzcmp.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzgrep.1.gz because associated file /usr/share/man/man1/xzgrep.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzegrep.1.gz because associated file /usr/share/man/man1/xzegrep.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzfgrep.1.gz because associated file /usr/share/man/man1/xzfgrep.1.gz (of link group lzma) doesn't exist
+Setting up libheimbase1-heimdal:amd64 (7.5.0+dfsg-1) ...
+Processing triggers for systemd (237-3ubuntu10.22) ...
+Setting up openssl (1.1.1-1ubuntu2.1~18.04.1) ...
+Setting up wget (1.19.4-1ubuntu2.2) ...
+Setting up libsqlite3-0:amd64 (3.22.0-1) ...
+Setting up dmsetup (2:1.02.145-4.1ubuntu3) ...
+Setting up shared-mime-info (1.9-2) ...
+Setting up libmpc3:amd64 (1.1.0-1) ...
+Setting up libc-dev-bin (2.27-3ubuntu1) ...
+Setting up libxdmcp6:amd64 (1:1.1.2-3) ...
+Setting up libgdbm-compat4:amd64 (1.14.1-6) ...
+Setting up libkeyutils1:amd64 (1.5.9-9.2ubuntu2) ...
+Setting up libsasl2-modules:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2) ...
+Setting up ca-certificates (20180409) ...
+Updating certificates in /etc/ssl/certs...
+133 added, 0 removed; done.
+Setting up manpages-dev (4.15-1) ...
+Setting up libc6-dev:amd64 (2.27-3ubuntu1) ...
+Setting up xdg-user-dirs (0.17-1ubuntu1) ...
+Setting up libitm1:amd64 (8.3.0-6ubuntu1~18.04) ...
+Setting up libx11-data (2:1.6.4-3ubuntu0.2) ...
+Setting up libxau6:amd64 (1:1.0.8-1) ...
+Setting up libmpdec2:amd64 (2.4.2-1ubuntu1) ...
+Setting up libdbus-1-3:amd64 (1.12.2-1ubuntu1.1) ...
+Setting up liblzo2-2:amd64 (2.08-1.2) ...
+Setting up libwrap0:amd64 (7.6.q-27) ...
+Setting up netbase (5.4) ...
+Setting up libisl19:amd64 (0.19-1) ...
+Setting up libjsoncpp1:amd64 (1.7.4-3) ...
+Setting up libpython3.6-stdlib:amd64 (3.6.8-1~18.04.1) ...
+Setting up libk5crypto3:amd64 (1.16-2ubuntu0.1) ...
+Setting up python3.6 (3.6.8-1~18.04.1) ...
+Setting up libwind0-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up libasan4:amd64 (7.4.0-1ubuntu1~18.04) ...
+Setting up libbinutils:amd64 (2.30-21ubuntu1~18.04.1) ...
+Setting up libarchive13:amd64 (3.2.2-3.1ubuntu0.3) ...
+Setting up libcilkrts5:amd64 (7.4.0-1ubuntu1~18.04) ...
+Setting up libasn1-8-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up libubsan0:amd64 (7.4.0-1ubuntu1~18.04) ...
+Setting up libhcrypto4-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up file (1:5.32-2ubuntu0.2) ...
+Setting up libhx509-5-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up libgcc-7-dev:amd64 (7.4.0-1ubuntu1~18.04) ...
+Setting up cpp-7 (7.4.0-1ubuntu1~18.04) ...
+Setting up libstdc++-7-dev:amd64 (7.4.0-1ubuntu1~18.04) ...
+Setting up libperl5.26:amd64 (5.26.1-6ubuntu0.3) ...
+Setting up libkrb5-3:amd64 (1.16-2ubuntu0.1) ...
+Setting up libkrb5-26-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up dbus (1.12.2-1ubuntu1.1) ...
+Setting up libxcb1:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libheimntlm0-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up binutils-x86-64-linux-gnu (2.30-21ubuntu1~18.04.1) ...
+Setting up libpython3-stdlib:amd64 (3.6.7-1~18.04) ...
+Setting up cpp (4:7.4.0-1ubuntu2.2) ...
+Setting up libpam-systemd:amd64 (237-3ubuntu10.22) ...
+Setting up python3 (3.6.7-1~18.04) ...
+Setting up python3-idna (2.6-1) ...
+Setting up python3-six (1.11.0-2) ...
+Setting up libx11-6:amd64 (2:1.6.4-3ubuntu0.2) ...
+Setting up python3-certifi (2018.1.18-2) ...
+Setting up python3-pkg-resources (39.0.1-2) ...
+Setting up python3-gi (3.26.1-2ubuntu1) ...
+Setting up libxmuu1:amd64 (2:1.1.2-2) ...
+Setting up libgssapi-krb5-2:amd64 (1.16-2ubuntu0.1) ...
+Setting up perl (5.26.1-6ubuntu0.3) ...
+Setting up python3-chardet (3.0.4-1) ...
+Setting up python3-urllib3 (1.22-1ubuntu0.18.04.1) ...
+Setting up binutils (2.30-21ubuntu1~18.04.1) ...
+Setting up libgssapi3-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up openssh-client (1:7.6p1-4ubuntu0.3) ...
+Setting up python3-dbus (1.2.6-1) ...
+Setting up libxext6:amd64 (2:1.3.3-1) ...
+Setting up gcc-7 (7.4.0-1ubuntu1~18.04) ...
+Setting up liberror-perl (0.17025-1) ...
+Setting up g++-7 (7.4.0-1ubuntu1~18.04) ...
+Setting up gcc (4:7.4.0-1ubuntu2.2) ...
+Setting up xauth (1:1.0.10-1) ...
+Setting up openssh-sftp-server (1:7.6p1-4ubuntu0.3) ...
+Setting up libldap-2.4-2:amd64 (2.4.45+dfsg-1ubuntu1.2) ...
+Setting up python3-requests (2.18.4-2ubuntu0.1) ...
+Setting up g++ (4:7.4.0-1ubuntu2.2) ...
+update-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/c++.1.gz because associated file /usr/share/man/man1/g++.1.gz (of link group c++) doesn't exist
+Setting up ssh-import-id (5.7-0ubuntu1.1) ...
+Setting up networkd-dispatcher (1.7-0ubuntu3.3) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/networkd-dispatcher.service → /lib/systemd/system/networkd-dispatcher.service.
+Setting up libcurl3-gnutls:amd64 (7.58.0-2ubuntu3.7) ...
+Setting up libcurl4:amd64 (7.58.0-2ubuntu3.7) ...
+Setting up openssh-server (1:7.6p1-4ubuntu0.3) ...
+
+Creating config file /etc/ssh/sshd_config with new version
+Creating SSH2 RSA key; this may take some time ...
+2048 SHA256:2YQljUe/qO1DUByiN7nQK7+IxspxM9skCxXeIGg39iI root@e0f4bf5beb77 (RSA)
+Creating SSH2 ECDSA key; this may take some time ...
+256 SHA256:0Xs9BYdTyFQ2HarxgwbmUwoQ9SHNMpZPP4WculXD9G8 root@e0f4bf5beb77 (ECDSA)
+Creating SSH2 ED25519 key; this may take some time ...
+256 SHA256:VoclTqJgwHV3CV7xE685MKyieyBRfwEF2N4G4BbbV6Y root@e0f4bf5beb77 (ED25519)
+Created symlink /etc/systemd/system/sshd.service → /lib/systemd/system/ssh.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/ssh.service → /lib/systemd/system/ssh.service.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up cmake (3.10.2-1ubuntu2) ...
+Setting up git (1:2.17.1-1ubuntu0.4) ...
+Setting up ssh (1:7.6p1-4ubuntu0.3) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Processing triggers for ca-certificates (20180409) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+Processing triggers for systemd (237-3ubuntu10.22) ...
+Removing intermediate container e0f4bf5beb77
+ ---> 1b6555d54b68
+Step 6/7 : COPY run.sh /
+ ---> c1d610fc3dfe
+Step 7/7 : CMD ["/run.sh"]
+ ---> Running in b7b96077028b
+Removing intermediate container b7b96077028b
+ ---> 516043eede11
+Successfully built 516043eede11
+Successfully tagged aaa:0.1
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (build-project)
+[Pipeline] sh
++ id -u
++ id -g
++ docker run --rm -u 1013:100 --cpus=2 --memory 2G --pids-limit 1024 --cap-drop=ALL -w /out -v /var/jenkins/workspace/ci-test-12:/out aaa:0.1
+WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.
++ git clone https://github.com/jbeder/yaml-cpp
+Cloning into 'yaml-cpp'...
++ pushd yaml-cpp
++ mkdir build
+/out/yaml-cpp /out
++ cd build
++ cmake ..
+-- The C compiler identification is GNU 7.4.0
+-- The CXX compiler identification is GNU 7.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test FLAG_WEXTRA
+-- Performing Test FLAG_WEXTRA - Success
+CMake Warning at CMakeLists.txt:310 (export):
+  Cannot create package registry file:
+
+    //.cmake/packages/yaml-cpp/ed90e99acceecc2d01ae5b3abd15423d
+
+  No such file or directory
+
+
+
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - not found
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /out/yaml-cpp/build
++ make
+Scanning dependencies of target yaml-cpp
+[  1%] Building CXX object CMakeFiles/yaml-cpp.dir/src/binary.cpp.o
+[  3%] Building CXX object CMakeFiles/yaml-cpp.dir/src/convert.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/node/convert.h:18:0,
+                 from /out/yaml-cpp/src/convert.cpp:3:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+[  5%] Building CXX object CMakeFiles/yaml-cpp.dir/src/directives.cpp.o
+[  6%] Building CXX object CMakeFiles/yaml-cpp.dir/src/emit.cpp.o
+[  8%] Building CXX object CMakeFiles/yaml-cpp.dir/src/emitfromevents.cpp.o
+[ 10%] Building CXX object CMakeFiles/yaml-cpp.dir/src/emitter.cpp.o
+[ 12%] Building CXX object CMakeFiles/yaml-cpp.dir/src/emitterstate.cpp.o
+[ 13%] Building CXX object CMakeFiles/yaml-cpp.dir/src/emitterutils.cpp.o
+[ 15%] Building CXX object CMakeFiles/yaml-cpp.dir/src/exceptions.cpp.o
+[ 17%] Building CXX object CMakeFiles/yaml-cpp.dir/src/exp.cpp.o
+[ 18%] Building CXX object CMakeFiles/yaml-cpp.dir/src/memory.cpp.o
+[ 20%] Building CXX object CMakeFiles/yaml-cpp.dir/src/node.cpp.o
+[ 22%] Building CXX object CMakeFiles/yaml-cpp.dir/src/node_data.cpp.o
+[ 24%] Building CXX object CMakeFiles/yaml-cpp.dir/src/nodebuilder.cpp.o
+In file included from /out/yaml-cpp/src/nodebuilder.cpp:6:0:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+[ 25%] Building CXX object CMakeFiles/yaml-cpp.dir/src/nodeevents.cpp.o
+[ 27%] Building CXX object CMakeFiles/yaml-cpp.dir/src/null.cpp.o
+[ 29%] Building CXX object CMakeFiles/yaml-cpp.dir/src/ostream_wrapper.cpp.o
+[ 31%] Building CXX object CMakeFiles/yaml-cpp.dir/src/parse.cpp.o
+In file included from /out/yaml-cpp/src/parse.cpp:7:0:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+[ 32%] Building CXX object CMakeFiles/yaml-cpp.dir/src/parser.cpp.o
+[ 34%] Building CXX object CMakeFiles/yaml-cpp.dir/src/regex_yaml.cpp.o
+[ 36%] Building CXX object CMakeFiles/yaml-cpp.dir/src/scanner.cpp.o
+[ 37%] Building CXX object CMakeFiles/yaml-cpp.dir/src/scanscalar.cpp.o
+[ 39%] Building CXX object CMakeFiles/yaml-cpp.dir/src/scantag.cpp.o
+[ 41%] Building CXX object CMakeFiles/yaml-cpp.dir/src/scantoken.cpp.o
+[ 43%] Building CXX object CMakeFiles/yaml-cpp.dir/src/simplekey.cpp.o
+[ 44%] Building CXX object CMakeFiles/yaml-cpp.dir/src/singledocparser.cpp.o
+[ 46%] Building CXX object CMakeFiles/yaml-cpp.dir/src/stream.cpp.o
+[ 48%] Building CXX object CMakeFiles/yaml-cpp.dir/src/tag.cpp.o
+[ 50%] Building CXX object CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilder.cpp.o
+[ 51%] Building CXX object CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilderadapter.cpp.o
+[ 53%] Linking CXX static library libyaml-cpp.a
+[ 53%] Built target yaml-cpp
+Scanning dependencies of target googletest_project
+[ 55%] Creating directories for 'googletest_project'
+[ 56%] No download step for 'googletest_project'
+[ 58%] No patch step for 'googletest_project'
+[ 60%] No update step for 'googletest_project'
+[ 62%] Performing configure step for 'googletest_project'
+-- The C compiler identification is GNU 7.4.0
+-- The CXX compiler identification is GNU 7.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PythonInterp: /usr/bin/python3.6 (found version "3.6.8") 
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - not found
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /out/yaml-cpp/build/test/googletest_project-prefix/src/googletest_project-build
+[ 63%] Performing build step for 'googletest_project'
+Scanning dependencies of target gmock_main
+[  9%] Building CXX object googlemock/CMakeFiles/gmock_main.dir/__/googletest/src/gtest-all.cc.o
+[ 18%] Building CXX object googlemock/CMakeFiles/gmock_main.dir/src/gmock-all.cc.o
+[ 27%] Building CXX object googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+[ 36%] Linking CXX static library libgmock_main.a
+[ 36%] Built target gmock_main
+Scanning dependencies of target gmock
+[ 45%] Building CXX object googlemock/CMakeFiles/gmock.dir/__/googletest/src/gtest-all.cc.o
+[ 54%] Building CXX object googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+[ 63%] Linking CXX static library libgmock.a
+[ 63%] Built target gmock
+Scanning dependencies of target gtest
+[ 72%] Building CXX object googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[ 81%] Linking CXX static library libgtest.a
+[ 81%] Built target gtest
+Scanning dependencies of target gtest_main
+[ 90%] Building CXX object googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+[100%] Linking CXX static library libgtest_main.a
+[100%] Built target gtest_main
+[ 65%] Performing install step for 'googletest_project'
+[ 36%] Built target gmock_main
+[ 63%] Built target gmock
+[ 81%] Built target gtest
+[100%] Built target gtest_main
+Install the project...
+-- Install configuration: ""
+-- Installing: /out/yaml-cpp/build/test/prefix/lib/libgmock.a
+-- Installing: /out/yaml-cpp/build/test/prefix/lib/libgmock_main.a
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-spec-builders.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-function-mockers.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-cardinalities.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-actions.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal/gmock-generated-internal-utils.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal/gmock-generated-internal-utils.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal/custom
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal/custom/gmock-generated-actions.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal/custom/gmock-matchers.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal/custom/gmock-generated-actions.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal/custom/gmock-port.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal/gmock-port.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/internal/gmock-internal-utils.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-actions.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-matchers.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-nice-strict.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-matchers.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-more-actions.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-actions.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-more-matchers.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-nice-strict.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-matchers.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-function-mockers.h
+-- Installing: /out/yaml-cpp/build/test/prefix/lib/libgtest.a
+-- Installing: /out/yaml-cpp/build/test/prefix/lib/libgtest_main.a
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest-typed-test.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest-death-test.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest-param-test.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest-printers.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-filepath.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-death-test-internal.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-param-util-generated.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-tuple.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-string.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-port.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-param-util-generated.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-tuple.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/custom
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/custom/gtest.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/custom/gtest-printers.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/custom/gtest-port.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-internal.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-linked_ptr.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-type-util.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-param-util.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-type-util.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/internal/gtest-port-arch.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest-test-part.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest-spi.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest-message.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest_pred_impl.h
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest-param-test.h.pump
+-- Installing: /out/yaml-cpp/build/test/prefix/include/gtest/gtest_prod.h
+[ 67%] Completed 'googletest_project'
+[ 67%] Built target googletest_project
+Scanning dependencies of target run-tests
+[ 68%] Building CXX object test/CMakeFiles/run-tests.dir/main.cpp.o
+[ 70%] Building CXX object test/CMakeFiles/run-tests.dir/ostream_wrapper_test.cpp.o
+[ 72%] Building CXX object test/CMakeFiles/run-tests.dir/regex_test.cpp.o
+[ 74%] Building CXX object test/CMakeFiles/run-tests.dir/integration/emitter_test.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/yaml.h:17:0,
+                 from /out/yaml-cpp/test/integration/emitter_test.cpp:3:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+/out/yaml-cpp/test/integration/emitter_test.cpp: In constructor 'YAML::{anonymous}::EmitterTest::EmitterTest()':
+/out/yaml-cpp/test/integration/emitter_test.cpp:27:7: warning: 'YAML::{anonymous}::EmitterTest::out' should be initialized in the member initialization list [-Weffc++]
+ class EmitterTest : public ::testing::Test {
+       ^~~~~~~~~~~
+In file included from /out/yaml-cpp/build/test/prefix/include/gtest/gtest.h:58:0,
+                 from /out/yaml-cpp/test/integration/emitter_test.cpp:4:
+/out/yaml-cpp/test/integration/emitter_test.cpp: In constructor 'YAML::{anonymous}::EmitterTest_SimpleScalar_Test::EmitterTest_SimpleScalar_Test()':
+/out/yaml-cpp/test/integration/emitter_test.cpp:43:1: note: synthesized method 'YAML::{anonymous}::EmitterTest::EmitterTest()' first required here 
+ TEST_F(EmitterTest, SimpleScalar) {
+ ^
+/out/yaml-cpp/test/integration/emitter_test.cpp: In constructor 'YAML::{anonymous}::Foo::Foo()':
+/out/yaml-cpp/test/integration/emitter_test.cpp:662:3: warning: 'YAML::{anonymous}::Foo::bar' should be initialized in the member initialization list [-Weffc++]
+   Foo() : x(0) {}
+   ^~~
+/out/yaml-cpp/test/integration/emitter_test.cpp: In constructor 'YAML::{anonymous}::EmitterErrorTest::EmitterErrorTest()':
+/out/yaml-cpp/test/integration/emitter_test.cpp:987:7: warning: 'YAML::{anonymous}::EmitterErrorTest::out' should be initialized in the member initialization list [-Weffc++]
+ class EmitterErrorTest : public ::testing::Test {
+       ^~~~~~~~~~~~~~~~
+In file included from /out/yaml-cpp/build/test/prefix/include/gtest/gtest.h:58:0,
+                 from /out/yaml-cpp/test/integration/emitter_test.cpp:4:
+/out/yaml-cpp/test/integration/emitter_test.cpp: In constructor 'YAML::{anonymous}::EmitterErrorTest_BadLocalTag_Test::EmitterErrorTest_BadLocalTag_Test()':
+/out/yaml-cpp/test/integration/emitter_test.cpp:997:1: note: synthesized method 'YAML::{anonymous}::EmitterErrorTest::EmitterErrorTest()' first required here 
+ TEST_F(EmitterErrorTest, BadLocalTag) {
+ ^
+[ 75%] Building CXX object test/CMakeFiles/run-tests.dir/integration/encoding_test.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/yaml.h:17:0,
+                 from /out/yaml-cpp/test/handler_test.h:2,
+                 from /out/yaml-cpp/test/integration/encoding_test.cpp:3:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+/out/yaml-cpp/test/integration/encoding_test.cpp: In member function 'void YAML::{anonymous}::EncodingTest::Run()':
+/out/yaml-cpp/test/integration/encoding_test.cpp:96:16: warning: declaration of 'sequence' shadows a member of 'YAML::{anonymous}::EncodingTest' [-Wshadow]
+     InSequence sequence;
+                ^~~~~~~~
+In file included from /out/yaml-cpp/test/integration/encoding_test.cpp:3:0:
+/out/yaml-cpp/test/handler_test.h:28:14: note: shadowed declaration is here
+   InSequence sequence;
+              ^~~~~~~~
+/out/yaml-cpp/test/handler_test.h: In constructor 'YAML::HandlerTest::HandlerTest()':
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::sequence' should be initialized in the member initialization list [-Weffc++]
+ class HandlerTest : public ::testing::Test {
+       ^~~~~~~~~~~
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::handler' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::nice_handler' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/integration/encoding_test.cpp: In constructor 'YAML::{anonymous}::EncodingTest::EncodingTest()':
+/out/yaml-cpp/test/integration/encoding_test.cpp:72:7: note: synthesized method 'YAML::HandlerTest::HandlerTest()' first required here 
+ class EncodingTest : public HandlerTest {
+       ^~~~~~~~~~~~
+/out/yaml-cpp/test/integration/encoding_test.cpp:72:7: warning: 'YAML::{anonymous}::EncodingTest::m_yaml' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/integration/encoding_test.cpp:72:7: warning: 'YAML::{anonymous}::EncodingTest::m_entries' should be initialized in the member initialization list [-Weffc++]
+In file included from /out/yaml-cpp/build/test/prefix/include/gtest/gtest.h:58:0,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/internal/gmock-internal-utils.h:47,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/gmock-actions.h:46,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/gmock.h:58,
+                 from /out/yaml-cpp/test/mock_event_handler.h:4,
+                 from /out/yaml-cpp/test/handler_test.h:1,
+                 from /out/yaml-cpp/test/integration/encoding_test.cpp:3:
+/out/yaml-cpp/test/integration/encoding_test.cpp: In constructor 'YAML::{anonymous}::EncodingTest_UTF8_noBOM_Test::EncodingTest_UTF8_noBOM_Test()':
+/out/yaml-cpp/test/integration/encoding_test.cpp:132:1: note: synthesized method 'YAML::{anonymous}::EncodingTest::EncodingTest()' first required here 
+ TEST_F(EncodingTest, UTF8_noBOM) {
+ ^
+In file included from /out/yaml-cpp/test/handler_test.h:1:0,
+                 from /out/yaml-cpp/test/integration/encoding_test.cpp:3:
+/out/yaml-cpp/test/mock_event_handler.h: In instantiation of 'testing::StrictMock<M>::StrictMock() [with MockClass = YAML::MockEventHandler]':
+/out/yaml-cpp/test/handler_test.h:12:7:   required from here
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock1_OnDocumentStart_10' should be initialized in the member initialization list [-Weffc++]
+ class MockEventHandler : public EventHandler {
+       ^~~~~~~~~~~~~~~~
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnDocumentEnd_11' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnNull_13' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnAlias_14' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnScalar_16' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnSequenceStart_19' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnSequenceEnd_20' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnMapStart_23' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnMapEnd_24' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnAnchor_25' should be initialized in the member initialization list [-Weffc++]
+In file included from /out/yaml-cpp/build/test/prefix/include/gmock/gmock.h:62:0,
+                 from /out/yaml-cpp/test/mock_event_handler.h:4,
+                 from /out/yaml-cpp/test/handler_test.h:1,
+                 from /out/yaml-cpp/test/integration/encoding_test.cpp:3:
+/out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-nice-strict.h:276:16: note: synthesized method 'YAML::MockEventHandler::MockEventHandler()' first required here 
+   StrictMock() {
+                ^
+[ 77%] Building CXX object test/CMakeFiles/run-tests.dir/integration/error_messages_test.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/yaml.h:17:0,
+                 from /out/yaml-cpp/test/integration/error_messages_test.cpp:1:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+[ 79%] Building CXX object test/CMakeFiles/run-tests.dir/integration/gen_emitter_test.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/yaml.h:17:0,
+                 from /out/yaml-cpp/test/handler_test.h:2,
+                 from /out/yaml-cpp/test/integration/gen_emitter_test.cpp:1:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+In file included from /out/yaml-cpp/test/integration/gen_emitter_test.cpp:1:0:
+/out/yaml-cpp/test/handler_test.h: In constructor 'YAML::HandlerTest::HandlerTest()':
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::sequence' should be initialized in the member initialization list [-Weffc++]
+ class HandlerTest : public ::testing::Test {
+       ^~~~~~~~~~~
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::handler' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::nice_handler' should be initialized in the member initialization list [-Weffc++]
+In file included from /out/yaml-cpp/build/test/prefix/include/gtest/gtest.h:58:0,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/internal/gmock-internal-utils.h:47,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/gmock-actions.h:46,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/gmock.h:58,
+                 from /out/yaml-cpp/test/mock_event_handler.h:4,
+                 from /out/yaml-cpp/test/handler_test.h:1,
+                 from /out/yaml-cpp/test/integration/gen_emitter_test.cpp:1:
+/out/yaml-cpp/test/integration/gen_emitter_test.cpp: In constructor 'YAML::{anonymous}::GenEmitterTest_testf2a8b6e6359fb2c30830_Test::GenEmitterTest_testf2a8b6e6359fb2c30830_Test()':
+/out/yaml-cpp/test/integration/gen_emitter_test.cpp:13:1: note: synthesized method 'YAML::HandlerTest::HandlerTest()' first required here 
+ TEST_F(GenEmitterTest, testf2a8b6e6359fb2c30830) {
+ ^
+In file included from /out/yaml-cpp/test/handler_test.h:1:0,
+                 from /out/yaml-cpp/test/integration/gen_emitter_test.cpp:1:
+/out/yaml-cpp/test/mock_event_handler.h: In instantiation of 'testing::StrictMock<M>::StrictMock() [with MockClass = YAML::MockEventHandler]':
+/out/yaml-cpp/test/handler_test.h:12:7:   required from here
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock1_OnDocumentStart_10' should be initialized in the member initialization list [-Weffc++]
+ class MockEventHandler : public EventHandler {
+       ^~~~~~~~~~~~~~~~
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnDocumentEnd_11' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnNull_13' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnAlias_14' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnScalar_16' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnSequenceStart_19' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnSequenceEnd_20' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnMapStart_23' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnMapEnd_24' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnAnchor_25' should be initialized in the member initialization list [-Weffc++]
+In file included from /out/yaml-cpp/build/test/prefix/include/gmock/gmock.h:62:0,
+                 from /out/yaml-cpp/test/mock_event_handler.h:4,
+                 from /out/yaml-cpp/test/handler_test.h:1,
+                 from /out/yaml-cpp/test/integration/gen_emitter_test.cpp:1:
+/out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-nice-strict.h:276:16: note: synthesized method 'YAML::MockEventHandler::MockEventHandler()' first required here 
+   StrictMock() {
+                ^
+[ 81%] Building CXX object test/CMakeFiles/run-tests.dir/integration/handler_spec_test.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/yaml.h:17:0,
+                 from /out/yaml-cpp/test/handler_test.h:2,
+                 from /out/yaml-cpp/test/integration/handler_spec_test.cpp:1:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+In file included from /out/yaml-cpp/test/integration/handler_spec_test.cpp:1:0:
+/out/yaml-cpp/test/handler_test.h: In constructor 'YAML::HandlerTest::HandlerTest()':
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::sequence' should be initialized in the member initialization list [-Weffc++]
+ class HandlerTest : public ::testing::Test {
+       ^~~~~~~~~~~
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::handler' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::nice_handler' should be initialized in the member initialization list [-Weffc++]
+In file included from /out/yaml-cpp/build/test/prefix/include/gtest/gtest.h:58:0,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/internal/gmock-internal-utils.h:47,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/gmock-actions.h:46,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/gmock.h:58,
+                 from /out/yaml-cpp/test/mock_event_handler.h:4,
+                 from /out/yaml-cpp/test/handler_test.h:1,
+                 from /out/yaml-cpp/test/integration/handler_spec_test.cpp:1:
+/out/yaml-cpp/test/integration/handler_spec_test.cpp: In constructor 'YAML::{anonymous}::HandlerSpecTest_Ex2_1_SeqScalars_Test::HandlerSpecTest_Ex2_1_SeqScalars_Test()':
+/out/yaml-cpp/test/integration/handler_spec_test.cpp:23:1: note: synthesized method 'YAML::HandlerTest::HandlerTest()' first required here 
+ TEST_F(HandlerSpecTest, Ex2_1_SeqScalars) {
+ ^
+In file included from /out/yaml-cpp/test/handler_test.h:1:0,
+                 from /out/yaml-cpp/test/integration/handler_spec_test.cpp:1:
+/out/yaml-cpp/test/mock_event_handler.h: In instantiation of 'testing::StrictMock<M>::StrictMock() [with MockClass = YAML::MockEventHandler]':
+/out/yaml-cpp/test/handler_test.h:12:7:   required from here
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock1_OnDocumentStart_10' should be initialized in the member initialization list [-Weffc++]
+ class MockEventHandler : public EventHandler {
+       ^~~~~~~~~~~~~~~~
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnDocumentEnd_11' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnNull_13' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnAlias_14' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnScalar_16' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnSequenceStart_19' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnSequenceEnd_20' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnMapStart_23' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnMapEnd_24' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnAnchor_25' should be initialized in the member initialization list [-Weffc++]
+In file included from /out/yaml-cpp/build/test/prefix/include/gmock/gmock.h:62:0,
+                 from /out/yaml-cpp/test/mock_event_handler.h:4,
+                 from /out/yaml-cpp/test/handler_test.h:1,
+                 from /out/yaml-cpp/test/integration/handler_spec_test.cpp:1:
+/out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-nice-strict.h:276:16: note: synthesized method 'YAML::MockEventHandler::MockEventHandler()' first required here 
+   StrictMock() {
+                ^
+[ 82%] Building CXX object test/CMakeFiles/run-tests.dir/integration/handler_test.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/yaml.h:17:0,
+                 from /out/yaml-cpp/test/handler_test.h:2,
+                 from /out/yaml-cpp/test/integration/handler_test.cpp:1:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+In file included from /out/yaml-cpp/test/integration/handler_test.cpp:1:0:
+/out/yaml-cpp/test/handler_test.h: In constructor 'YAML::HandlerTest::HandlerTest()':
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::sequence' should be initialized in the member initialization list [-Weffc++]
+ class HandlerTest : public ::testing::Test {
+       ^~~~~~~~~~~
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::handler' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/handler_test.h:12:7: warning: 'YAML::HandlerTest::nice_handler' should be initialized in the member initialization list [-Weffc++]
+In file included from /out/yaml-cpp/build/test/prefix/include/gtest/gtest.h:58:0,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/internal/gmock-internal-utils.h:47,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/gmock-actions.h:46,
+                 from /out/yaml-cpp/build/test/prefix/include/gmock/gmock.h:58,
+                 from /out/yaml-cpp/test/mock_event_handler.h:4,
+                 from /out/yaml-cpp/test/handler_test.h:1,
+                 from /out/yaml-cpp/test/integration/handler_test.cpp:1:
+/out/yaml-cpp/test/integration/handler_test.cpp: In constructor 'YAML::{anonymous}::HandlerTest_NoEndOfMapFlow_Test::HandlerTest_NoEndOfMapFlow_Test()':
+/out/yaml-cpp/test/integration/handler_test.cpp:21:1: note: synthesized method 'YAML::HandlerTest::HandlerTest()' first required here 
+ TEST_F(HandlerTest, NoEndOfMapFlow) {
+ ^
+In file included from /out/yaml-cpp/test/handler_test.h:1:0,
+                 from /out/yaml-cpp/test/integration/handler_test.cpp:1:
+/out/yaml-cpp/test/mock_event_handler.h: In instantiation of 'testing::StrictMock<M>::StrictMock() [with MockClass = YAML::MockEventHandler]':
+/out/yaml-cpp/test/handler_test.h:12:7:   required from here
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock1_OnDocumentStart_10' should be initialized in the member initialization list [-Weffc++]
+ class MockEventHandler : public EventHandler {
+       ^~~~~~~~~~~~~~~~
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnDocumentEnd_11' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnNull_13' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnAlias_14' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnScalar_16' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnSequenceStart_19' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnSequenceEnd_20' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock4_OnMapStart_23' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock0_OnMapEnd_24' should be initialized in the member initialization list [-Weffc++]
+/out/yaml-cpp/test/mock_event_handler.h:8:7: warning: 'YAML::MockEventHandler::gmock2_OnAnchor_25' should be initialized in the member initialization list [-Weffc++]
+In file included from /out/yaml-cpp/build/test/prefix/include/gmock/gmock.h:62:0,
+                 from /out/yaml-cpp/test/mock_event_handler.h:4,
+                 from /out/yaml-cpp/test/handler_test.h:1,
+                 from /out/yaml-cpp/test/integration/handler_test.cpp:1:
+/out/yaml-cpp/build/test/prefix/include/gmock/gmock-generated-nice-strict.h:276:16: note: synthesized method 'YAML::MockEventHandler::MockEventHandler()' first required here 
+   StrictMock() {
+                ^
+In file included from /out/yaml-cpp/test/integration/handler_test.cpp:2:0:
+/out/yaml-cpp/test/specexamples.h: At global scope:
+/out/yaml-cpp/test/specexamples.h:839:13: warning: '{anonymous}::ex8_22' defined but not used [-Wunused-variable]
+ const char *ex8_22 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:831:13: warning: '{anonymous}::ex8_21' defined but not used [-Wunused-variable]
+ const char *ex8_21 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:823:13: warning: '{anonymous}::ex8_20' defined but not used [-Wunused-variable]
+ const char *ex8_20 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:818:13: warning: '{anonymous}::ex8_19' defined but not used [-Wunused-variable]
+ const char *ex8_19 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:812:13: warning: '{anonymous}::ex8_18' defined but not used [-Wunused-variable]
+ const char *ex8_18 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:805:13: warning: '{anonymous}::ex8_17' defined but not used [-Wunused-variable]
+ const char *ex8_17 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:801:13: warning: '{anonymous}::ex8_16' defined but not used [-Wunused-variable]
+ const char *ex8_16 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:793:13: warning: '{anonymous}::ex8_15' defined but not used [-Wunused-variable]
+ const char *ex8_15 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:788:13: warning: '{anonymous}::ex8_14' defined but not used [-Wunused-variable]
+ const char *ex8_14 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:760:13: warning: '{anonymous}::ex8_9' defined but not used [-Wunused-variable]
+ const char *ex8_9 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:749:13: warning: '{anonymous}::ex8_8' defined but not used [-Wunused-variable]
+ const char *ex8_8 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:743:13: warning: '{anonymous}::ex8_7' defined but not used [-Wunused-variable]
+ const char *ex8_7 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:735:13: warning: '{anonymous}::ex8_6' defined but not used [-Wunused-variable]
+ const char *ex8_6 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:714:13: warning: '{anonymous}::ex8_5' defined but not used [-Wunused-variable]
+ const char *ex8_5 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:706:13: warning: '{anonymous}::ex8_4' defined but not used [-Wunused-variable]
+ const char *ex8_4 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:702:13: warning: '{anonymous}::ex8_3c' defined but not used [-Wunused-variable]
+ const char *ex8_3c =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:697:13: warning: '{anonymous}::ex8_3b' defined but not used [-Wunused-variable]
+ const char *ex8_3b =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:692:13: warning: '{anonymous}::ex8_3a' defined but not used [-Wunused-variable]
+ const char *ex8_3a =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:679:13: warning: '{anonymous}::ex8_2' defined but not used [-Wunused-variable]
+ const char *ex8_2 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:668:13: warning: '{anonymous}::ex8_1' defined but not used [-Wunused-variable]
+ const char *ex8_1 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:661:13: warning: '{anonymous}::ex7_24' defined but not used [-Wunused-variable]
+ const char *ex7_24 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:654:13: warning: '{anonymous}::ex7_23' defined but not used [-Wunused-variable]
+ const char *ex7_23 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:649:13: warning: '{anonymous}::ex7_22' defined but not used [-Wunused-variable]
+ const char *ex7_22 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:644:13: warning: '{anonymous}::ex7_21' defined but not used [-Wunused-variable]
+ const char *ex7_21 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:638:13: warning: '{anonymous}::ex7_20' defined but not used [-Wunused-variable]
+ const char *ex7_20 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:633:13: warning: '{anonymous}::ex7_19' defined but not used [-Wunused-variable]
+ const char *ex7_19 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:626:13: warning: '{anonymous}::ex7_18' defined but not used [-Wunused-variable]
+ const char *ex7_18 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:618:13: warning: '{anonymous}::ex7_17' defined but not used [-Wunused-variable]
+ const char *ex7_17 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:611:13: warning: '{anonymous}::ex7_16' defined but not used [-Wunused-variable]
+ const char *ex7_16 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:607:13: warning: '{anonymous}::ex7_15' defined but not used [-Wunused-variable]
+ const char *ex7_15 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:597:13: warning: '{anonymous}::ex7_14' defined but not used [-Wunused-variable]
+ const char *ex7_14 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:593:13: warning: '{anonymous}::ex7_13' defined but not used [-Wunused-variable]
+ const char *ex7_13 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:587:13: warning: '{anonymous}::ex7_12' defined but not used [-Wunused-variable]
+ const char *ex7_12 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:582:13: warning: '{anonymous}::ex7_11' defined but not used [-Wunused-variable]
+ const char *ex7_11 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:568:13: warning: '{anonymous}::ex7_10' defined but not used [-Wunused-variable]
+ const char *ex7_10 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:562:13: warning: '{anonymous}::ex7_9' defined but not used [-Wunused-variable]
+ const char *ex7_9 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:557:13: warning: '{anonymous}::ex7_8' defined but not used [-Wunused-variable]
+ const char *ex7_8 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:555:13: warning: '{anonymous}::ex7_7' defined but not used [-Wunused-variable]
+ const char *ex7_7 = " 'here''s to \"quotes\"'";
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:549:13: warning: '{anonymous}::ex7_6' defined but not used [-Wunused-variable]
+ const char *ex7_6 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:542:13: warning: '{anonymous}::ex7_5' defined but not used [-Wunused-variable]
+ const char *ex7_5 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:537:13: warning: '{anonymous}::ex7_4' defined but not used [-Wunused-variable]
+ const char *ex7_4 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:531:13: warning: '{anonymous}::ex7_3' defined but not used [-Wunused-variable]
+ const char *ex7_3 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:525:13: warning: '{anonymous}::ex7_2' defined but not used [-Wunused-variable]
+ const char *ex7_2 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:519:13: warning: '{anonymous}::ex7_1' defined but not used [-Wunused-variable]
+ const char *ex7_1 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:515:13: warning: '{anonymous}::ex6_29' defined but not used [-Wunused-variable]
+ const char *ex6_29 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:509:13: warning: '{anonymous}::ex6_28' defined but not used [-Wunused-variable]
+ const char *ex6_28 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:504:13: warning: '{anonymous}::ex6_27b' defined but not used [-Wunused-variable]
+ const char *ex6_27b =
+             ^~~~~~~
+/out/yaml-cpp/test/specexamples.h:499:13: warning: '{anonymous}::ex6_27a' defined but not used [-Wunused-variable]
+ const char *ex6_27a =
+             ^~~~~~~
+/out/yaml-cpp/test/specexamples.h:492:13: warning: '{anonymous}::ex6_26' defined but not used [-Wunused-variable]
+ const char *ex6_26 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:488:13: warning: '{anonymous}::ex6_25' defined but not used [-Wunused-variable]
+ const char *ex6_25 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:484:13: warning: '{anonymous}::ex6_24' defined but not used [-Wunused-variable]
+ const char *ex6_24 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:479:13: warning: '{anonymous}::ex6_23' defined but not used [-Wunused-variable]
+ const char *ex6_23 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:474:13: warning: '{anonymous}::ex6_22' defined but not used [-Wunused-variable]
+ const char *ex6_22 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:465:13: warning: '{anonymous}::ex6_21' defined but not used [-Wunused-variable]
+ const char *ex6_21 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:460:13: warning: '{anonymous}::ex6_20' defined but not used [-Wunused-variable]
+ const char *ex6_20 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:455:13: warning: '{anonymous}::ex6_19' defined but not used [-Wunused-variable]
+ const char *ex6_19 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:446:13: warning: '{anonymous}::ex6_18' defined but not used [-Wunused-variable]
+ const char *ex6_18 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:441:13: warning: '{anonymous}::ex6_17' defined but not used [-Wunused-variable]
+ const char *ex6_17 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:436:13: warning: '{anonymous}::ex6_16' defined but not used [-Wunused-variable]
+ const char *ex6_16 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:431:13: warning: '{anonymous}::ex6_15' defined but not used [-Wunused-variable]
+ const char *ex6_15 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:425:13: warning: '{anonymous}::ex6_14' defined but not used [-Wunused-variable]
+ const char *ex6_14 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:420:13: warning: '{anonymous}::ex6_13' defined but not used [-Wunused-variable]
+ const char *ex6_13 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:412:13: warning: '{anonymous}::ex6_12' defined but not used [-Wunused-variable]
+ const char *ex6_12 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:406:13: warning: '{anonymous}::ex6_11' defined but not used [-Wunused-variable]
+ const char *ex6_11 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:401:13: warning: '{anonymous}::ex6_10' defined but not used [-Wunused-variable]
+ const char *ex6_10 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:397:13: warning: '{anonymous}::ex6_9' defined but not used [-Wunused-variable]
+ const char *ex6_9 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:388:13: warning: '{anonymous}::ex6_8' defined but not used [-Wunused-variable]
+ const char *ex6_8 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:380:13: warning: '{anonymous}::ex6_7' defined but not used [-Wunused-variable]
+ const char *ex6_7 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:371:13: warning: '{anonymous}::ex6_6' defined but not used [-Wunused-variable]
+ const char *ex6_6 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:362:13: warning: '{anonymous}::ex6_5' defined but not used [-Wunused-variable]
+ const char *ex6_5 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:353:13: warning: '{anonymous}::ex6_4' defined but not used [-Wunused-variable]
+ const char *ex6_4 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:348:13: warning: '{anonymous}::ex6_3' defined but not used [-Wunused-variable]
+ const char *ex6_3 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:342:13: warning: '{anonymous}::ex6_2' defined but not used [-Wunused-variable]
+ const char *ex6_2 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:328:13: warning: '{anonymous}::ex6_1' defined but not used [-Wunused-variable]
+ const char *ex6_1 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:323:13: warning: '{anonymous}::ex5_14' defined but not used [-Wunused-variable]
+ const char *ex5_14 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:316:13: warning: '{anonymous}::ex5_13' defined but not used [-Wunused-variable]
+ const char *ex5_13 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:308:13: warning: '{anonymous}::ex5_12' defined but not used [-Wunused-variable]
+ const char *ex5_12 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:303:13: warning: '{anonymous}::ex5_11' defined but not used [-Wunused-variable]
+ const char *ex5_11 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:296:13: warning: '{anonymous}::ex5_8' defined but not used [-Wunused-variable]
+ const char *ex5_8 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:288:13: warning: '{anonymous}::ex5_7' defined but not used [-Wunused-variable]
+ const char *ex5_7 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:284:13: warning: '{anonymous}::ex5_6' defined but not used [-Wunused-variable]
+ const char *ex5_6 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:282:13: warning: '{anonymous}::ex5_5' defined but not used [-Wunused-variable]
+ const char *ex5_5 = "# Comment only.";
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:278:13: warning: '{anonymous}::ex5_4' defined but not used [-Wunused-variable]
+ const char *ex5_4 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:269:13: warning: '{anonymous}::ex5_3' defined but not used [-Wunused-variable]
+ const char *ex5_3 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:239:13: warning: '{anonymous}::ex2_28' defined but not used [-Wunused-variable]
+ const char *ex2_28 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:208:13: warning: '{anonymous}::ex2_27' defined but not used [-Wunused-variable]
+ const char *ex2_27 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:199:13: warning: '{anonymous}::ex2_26' defined but not used [-Wunused-variable]
+ const char *ex2_26 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:190:13: warning: '{anonymous}::ex2_25' defined but not used [-Wunused-variable]
+ const char *ex2_25 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:174:13: warning: '{anonymous}::ex2_24' defined but not used [-Wunused-variable]
+ const char *ex2_24 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:159:13: warning: '{anonymous}::ex2_23' defined but not used [-Wunused-variable]
+ const char *ex2_23 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:149:13: warning: '{anonymous}::ex2_18' defined but not used [-Wunused-variable]
+ const char *ex2_18 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:140:13: warning: '{anonymous}::ex2_17' defined but not used [-Wunused-variable]
+ const char *ex2_17 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:131:13: warning: '{anonymous}::ex2_16' defined but not used [-Wunused-variable]
+ const char *ex2_16 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:121:13: warning: '{anonymous}::ex2_15' defined but not used [-Wunused-variable]
+ const char *ex2_15 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:115:13: warning: '{anonymous}::ex2_14' defined but not used [-Wunused-variable]
+ const char *ex2_14 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:109:13: warning: '{anonymous}::ex2_13' defined but not used [-Wunused-variable]
+ const char *ex2_13 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:99:13: warning: '{anonymous}::ex2_12' defined but not used [-Wunused-variable]
+ const char *ex2_12 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:88:13: warning: '{anonymous}::ex2_11' defined but not used [-Wunused-variable]
+ const char *ex2_11 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:78:13: warning: '{anonymous}::ex2_10' defined but not used [-Wunused-variable]
+ const char *ex2_10 =
+             ^~~~~~
+/out/yaml-cpp/test/specexamples.h:68:13: warning: '{anonymous}::ex2_9' defined but not used [-Wunused-variable]
+ const char *ex2_9 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:56:13: warning: '{anonymous}::ex2_8' defined but not used [-Wunused-variable]
+ const char *ex2_8 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:44:13: warning: '{anonymous}::ex2_7' defined but not used [-Wunused-variable]
+ const char *ex2_7 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:37:13: warning: '{anonymous}::ex2_6' defined but not used [-Wunused-variable]
+ const char *ex2_6 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:32:13: warning: '{anonymous}::ex2_5' defined but not used [-Wunused-variable]
+ const char *ex2_5 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:22:13: warning: '{anonymous}::ex2_4' defined but not used [-Wunused-variable]
+ const char *ex2_4 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:12:13: warning: '{anonymous}::ex2_3' defined but not used [-Wunused-variable]
+ const char *ex2_3 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:7:13: warning: '{anonymous}::ex2_2' defined but not used [-Wunused-variable]
+ const char *ex2_2 =
+             ^~~~~
+/out/yaml-cpp/test/specexamples.h:2:13: warning: '{anonymous}::ex2_1' defined but not used [-Wunused-variable]
+ const char *ex2_1 =
+             ^~~~~
+[ 84%] Building CXX object test/CMakeFiles/run-tests.dir/integration/load_node_test.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/yaml.h:17:0,
+                 from /out/yaml-cpp/test/integration/load_node_test.cpp:1:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+[ 86%] Building CXX object test/CMakeFiles/run-tests.dir/integration/node_spec_test.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/yaml.h:17:0,
+                 from /out/yaml-cpp/test/integration/node_spec_test.cpp:2:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+[ 87%] Building CXX object test/CMakeFiles/run-tests.dir/node/node_test.cpp.o
+In file included from /out/yaml-cpp/include/yaml-cpp/node/convert.h:18:0,
+                 from /out/yaml-cpp/test/node/node_test.cpp:3:
+/out/yaml-cpp/include/yaml-cpp/node/impl.h: In member function 'YAML::Node& YAML::Node::operator=(const T&)':
+/out/yaml-cpp/include/yaml-cpp/node/impl.h:212:11: warning: 'operator=' should return a reference to '*this' [-Weffc++]
+   return *this;
+           ^~~~
+[ 89%] Linking CXX executable run-tests
+[ 89%] Built target run-tests
+Scanning dependencies of target sandbox
+[ 91%] Building CXX object util/CMakeFiles/sandbox.dir/sandbox.cpp.o
+[ 93%] Linking CXX executable sandbox
+[ 93%] Built target sandbox
+Scanning dependencies of target parse
+[ 94%] Building CXX object util/CMakeFiles/parse.dir/parse.cpp.o
+[ 96%] Linking CXX executable parse
+[ 96%] Built target parse
+Scanning dependencies of target read
+[ 98%] Building CXX object util/CMakeFiles/read.dir/read.cpp.o
+[100%] Linking CXX executable read
+[100%] Built target read
+++ grep '^Version:' yaml-cpp.pc
++ version='Version: 0.6.2'
++ yamlcpp_pkg_dir=yaml-cpp-0.6.2
++ make install DESTDIR=/tmp/yaml-cpp-0.6.2
+[ 53%] Built target yaml-cpp
+[ 67%] Built target googletest_project
+[ 89%] Built target run-tests
+[ 93%] Built target sandbox
+[ 96%] Built target parse
+[100%] Built target read
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/lib/libyaml-cpp.a
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/anchor.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/yaml.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/eventhandler.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/exceptions.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/impl.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/iterator.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail/memory.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail/iterator_fwd.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail/impl.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail/iterator.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail/node_ref.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail/node.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail/node_iterator.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail/node_data.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/detail/bool_type.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/node.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/parse.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/type.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/emit.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/convert.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/node/ptr.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/emitterdef.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/stlemitter.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/emitfromevents.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/traits.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/contrib
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/contrib/graphbuilder.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/contrib/anchordict.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/emitter.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/emitterstyle.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/dll.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/ostream_wrapper.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/null.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/mark.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/parser.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/emittermanip.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/include/yaml-cpp/binary.h
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/lib/cmake/yaml-cpp/yaml-cpp-config.cmake
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/lib/cmake/yaml-cpp/yaml-cpp-config-version.cmake
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/lib/cmake/yaml-cpp/yaml-cpp-targets.cmake
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/lib/cmake/yaml-cpp/yaml-cpp-targets-release.cmake
+-- Installing: /tmp/yaml-cpp-0.6.2/usr/local/lib/pkgconfig/yaml-cpp.pc
++ pushd /tmp
++ tar cfz /out/yaml-cpp-0.6.2.tar.gz yaml-cpp-0.6.2
+/tmp /out/yaml-cpp/build /out
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

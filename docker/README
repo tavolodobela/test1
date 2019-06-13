@@ -1,2 +1,0 @@
-docker build -t aaa:0.1 .
-docker run --rm --memory 2G --pids-limit 1024 --cap-drop=ALL -w /tmp -v /tmp:/out aaa:0.1

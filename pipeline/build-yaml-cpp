@@ -1,0 +1,23 @@
+node {
+    deleteDir()
+    
+    checkout([$class: 'GitSCM',
+              branches: [[name: 'master']],
+              doGenerateSubmoduleConfigurations: false,
+              extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: true, recursiveSubmodules: true, reference: '', shallow: false, trackingSubmodules: false]],
+              submoduleCfg: [],
+              userRemoteConfigs: [[url: 'https://github.com/tavolodobela/test1.git']]
+            ])
+
+    def image = 'aaa:0.1'
+
+    stage('build-docker') {
+        dir('docker') {
+            sh "docker build -t ${image} ."
+        }
+    }
+
+    stage('build-project') {
+        sh "docker run --rm -u \$(id -u):\$(id -g) --cpus=2 --memory 2G --pids-limit 1024 --cap-drop=ALL -w /out -v ${WORKSPACE}:/out ${image}"
+    }
+}
