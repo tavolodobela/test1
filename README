@@ -1,0 +1,24 @@
+You are about to create a (scripted, not declarative) jenkins pipeline script to build the yaml-cpp project from github (https://github.com/jbeder/yaml-cpp) in docker.
+
+To show your work, please create a public repo on github/bitbucket/... (YOUR REPO hereafter) and put all files (eg. Dockerfile, scripts, READMEs, etc) to this repo.
+
+#1: Create a scripted jenkins pipeline performing the following tasks:
+
+a) clone "YOUR REPO"
+
+b) build a docker image called aaa:0.1 from Ubuntu Bionic (18.04) with all the necessary dependencies for the build of yaml-cpp from github (https://github.com/jbeder/yaml-cpp)
+
+c) build the yaml-cpp project inside docker
+
+The build process should clone the master branch of yaml-cpp, compile the project, and provide a tar.gz binary artifact with the compiled results (headers, libraries, etc) in the
+filesystem of the docker host (ie. the tar.gz file should be available when the docker container stops at the end. Use volume mount or similar).
+
+Be sure to limit the running containers available resources to some sane and reasonable values (eg. cpu, memory, ...). 
+
+The name of the tar.gz file should include the version number, eg. yaml-cpp-0.1.2.tar.gz (hint: check out yaml-cpp.pc after running make)
+
+If you used any shell script, then be sure to use bash, and make sure it's robust enough (hint: use shellcheck, https://www.shellcheck.net/)
+
+You may use any available jenkins plugin for jenkins 2.x, if necessary. Be sure to document it in the README.
+
+#2: Put the pipeline script, the jenkins job's textual console output to "YOUR REPO", too. Be sure to create a reasonable directory structure.
