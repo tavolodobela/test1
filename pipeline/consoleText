@@ -1,9 +1,8 @@
 Started by user XXXXX
-[Office365connector] No webhooks to notify
 Running in Durability level: SURVIVABLE_NONATOMIC
 [Pipeline] Start of Pipeline
 [Pipeline] node
-Running on linux-sm in /var/jenkins/workspace/ci-test-12
+Running on somenode in /var/jenkins/workspace/ci-test-12
 [Pipeline] {
 [Pipeline] deleteDir
 [Pipeline] checkout
